@@ -1,0 +1,306 @@
+﻿nombre,tipo,sku,codigo_barras,descripcion,stock_actual,stock_minimo,costo_unitario,sala,categoria
+Sillón dental,insumo,,,"Cant. por taller: 2.0 | Semana: 5 , 6 , 7 ",2.0,,,Odontología,INSTRUMENTAL PARA DESTARTRAJE SUPRA Y SUBGINGIVAL
+Scaler,implemento,,,"Cant. por semestre:  | Semana: 5 , 6 , 7 ",,,,Odontología,INSTRUMENTAL PARA DESTARTRAJE SUPRA Y SUBGINGIVAL
+Fantomas para destartraje (no modelos de yeso),insumo,,,"Cant. por taller: 2.0 | Semana: 5 , 6 , 7 ",2.0,,,Odontología,INSTRUMENTAL PARA DESTARTRAJE SUPRA Y SUBGINGIVAL
+Pecheras paciente,insumo,,,"Cant. por taller: 2.0 | Semana: 5 , 6 , 7 ",2.0,,,Odontología,INSTRUMENTAL PARA DESTARTRAJE SUPRA Y SUBGINGIVAL
+Eyectores,insumo,,,"Cant. por taller: 12.0 | Semana: 5 , 6 , 7 ",12.0,,,Odontología,INSTRUMENTAL PARA DESTARTRAJE SUPRA Y SUBGINGIVAL
+Bandeja de examen completa,insumo,,,"Cant. por taller: 12.0 | Semana: 5 , 6 , 7 ",12.0,,,Odontología,INSTRUMENTAL PARA DESTARTRAJE SUPRA Y SUBGINGIVAL
+Sonda periodontal carolina del norte,insumo,,,"Cant. por taller: 12.0 | Semana: 5 , 6 , 7 ",12.0,,,Odontología,INSTRUMENTAL PARA DESTARTRAJE SUPRA Y SUBGINGIVAL
+Puntas de scaler,insumo,,,"Cant. por taller: 4.0 | Semana: 5 , 6 , 7 ",4.0,,,Odontología,INSTRUMENTAL PARA DESTARTRAJE SUPRA Y SUBGINGIVAL
+Sillón dental,insumo,,,"Cant. por taller: 2.0 | Semana: 8 , 9 , 10",2.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+urit 600,implemento,,,Cant. por semestre: 1.0 | Semana: 4.0,1.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Fantomas para destartraje (no modelos de yeso),insumo,,,"Cant. por taller: 2.0 | Semana: 8 , 9 , 10",2.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Pecheras paciente,insumo,,,"Cant. por taller: 2.0 | Semana: 8 , 9 , 10",2.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Eyectores,insumo,,,"Cant. por taller: 12.0 | Semana: 8 , 9 , 10",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Bandeja de examen completa,insumo,,,"Cant. por taller: 12.0 | Semana: 8 , 9 , 10",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Sonda periodontal carolina del norte,insumo,,,"Cant. por taller: 12.0 | Semana: 8 , 9 , 10",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Curetas Gracey,insumo,,,"Cant. por taller: 4 de c/u | Semana: 8 , 9 , 10",4 de c/u,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Jeringa Carpule,insumo,,,"Cant. por taller: 6.0 | Semana: 8 , 9 , 10",6.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Anestesia,insumo,,,"Cant. por taller: 1 caja | Semana: 8 , 9 , 10",1 caja,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Agujas,insumo,,,"Cant. por taller: 1 caja | Semana: 8 , 9 , 10",1 caja,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Jeringas de irrigación,insumo,,,"Cant. por taller: 12.0 | Semana: 8 , 9 , 10",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Gasas esteriles,insumo,,,"Cant. por taller: 24.0 | Semana: 8 , 9 , 10",24.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Clorhexidina 0.12%,insumo,,,"Cant. por taller: 1.0 | Semana: 8 , 9 , 10",1.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Suero fisiológico,insumo,,,"Cant. por taller: 1.0 | Semana: 8 , 9 , 10",1.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Piedra de Arkansas,insumo,,,"Cant. por taller: 2.0 | Semana: 8 , 9 , 10",2.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL NO QUIRÚRGICO Y PULIDO RADICULAR
+Sillón dental,insumo,,,"Cant. por taller: 2.0 | Semana: 11 , 12 , 13",2.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+urit 600,implemento,,,Cant. por semestre: 1.0 | Semana: 4.0,1.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Mesas de mayo,insumo,,,"Cant. por taller: 3.0 | Semana: 11 , 12 , 13",3.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Mango de bisturí #3,insumo,,,"Cant. por taller: 12.0 | Semana: 11 , 12 , 13",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Hojas de bisturí # 11 y 15,insumo,,,"Cant. por taller: 12 de cada uno | Semana: 11 , 12 , 13",12 de cada uno,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Legras,insumo,,,"Cant. por taller: 12.0 | Semana: 11 , 12 , 13",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Curetas,insumo,,,"Cant. por taller: 12.0 | Semana: 11 , 12 , 13",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Gasas,insumo,,,"Cant. por taller: 24.0 | Semana: 11 , 12 , 13",24.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Guantes estériles,insumo,,,"Cant. por taller: 12.0 | Semana: 11 , 12 , 13",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Bata quirúrgica,insumo,,,"Cant. por taller: 12.0 | Semana: 11 , 12 , 13",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Portaagujas,insumo,,,"Cant. por taller: 12.0 | Semana: 11 , 12 , 13",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Sutura,insumo,,,"Cant. por taller: 1 caja | Semana: 11 , 12 , 13",1 caja,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Tijeras .,insumo,,,"Cant. por taller: 12.0 | Semana: 11 , 12 , 13",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Separadores de minessota,insumo,,,"Cant. por taller: 12.0 | Semana: 11 , 12 , 13",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Pinzas para tejido,insumo,,,"Cant. por taller: 12.0 | Semana: 11 , 12 , 13",12.0,,,Odontología,INSTRUMENTAL DE TRATAMIENTO PERIODONTAL QUIRÚRGICO
+Manteca de Karité,insumo,,,Cant. por taller: 100 g | Semana: 8.0,100 g,,,Química,
+Placas calefactoras,implemento,,,Cant. por semestre: 5.0 | Semana: ,5.0,,,Química,
+Aceite de coco,insumo,,,Cant. por taller: 100 g | Semana: 8.0,100 g,,,Química,
+Balanza analítica,implemento,,,Cant. por semestre: 3.0 | Semana: ,3.0,,,Química,
+Cera de abejas,insumo,,,Cant. por taller: 100 g | Semana: 8.0,100 g,,,Química,
+Aceite de ricino,insumo,,,Cant. por taller: 100 g | Semana: 8.0,100 g,,,Química,
+Aceite de almendras  dulces,insumo,,,Cant. por taller: 100 mL | Semana: 8.0,100 mL,,,Química,
+Vitamina E,insumo,,,Cant. por taller: 30 mL | Semana: 8.0,30 mL,,,Química,
+Pigmento natural rojo,insumo,,,Cant. por taller: 5 g | Semana: 8.0,5 g,,,Química,
+Aceite de ricino,insumo,,,Cant. por taller: 100 g | Semana: 6.0,100 g,,,Química,
+Aceite de coco prensado en frío,insumo,,,Cant. por taller: 100 g | Semana: 6.0,100 g,,,Química,
+Aceite de almendras  dulces,insumo,,,Cant. por taller: 100 mL | Semana: 6.0,100 mL,,,Química,
+Gel aloe vera natural,insumo,,,Cant. por taller: 100 g | Semana: 6.0,100 g,,,Química,
+Vitamina E,insumo,,,Cant. por taller: 30 mL | Semana: 6.0,30 mL,,,Química,
+Crema base,insumo,,,Cant. por taller: 900 g | Semana: 4.0,900 g,,,Química,
+Glicerina,insumo,,,Cant. por taller: 50 g | Semana: 4.0,50 g,,,Química,
+Aceite de jojoba,insumo,,,Cant. por taller: 100 g | Semana: 4.0,100 g,,,Química,
+Vitamina E,insumo,,,Cant. por taller: 10 g | Semana: 4.0,10 g,,,Química,
+Extracto de aloe vera,insumo,,,Cant. por taller: 50 g | Semana: 4.0,50 g,,,Química,
+Aceite esenciales para crema,insumo,,,Cant. por taller: 10 g | Semana: 4.0,10 g,,,Química,
+Base de glicerina neutra,insumo,,,Cant. por taller: 1000 g | Semana: 10.0,1000 g,,,Química,
+Aceite de almendras  dulces,insumo,,,Cant. por taller: 50 mL | Semana: 10.0,50 mL,,,Química,
+Aceites esenciales,insumo,,,Cant. por taller: 5 mL | Semana: 10.0,5 mL,,,Química,
+Alcohol etílico 96%,insumo,,,Cant. por taller: 500 mL | Semana: 10.0,500 mL,,,Química,
+Agua destilada,insumo,,,Cant. por taller: 1000 mL | Semana: 12.0,1000 mL,,,Química,
+Glicerina Vegetal,insumo,,,Cant. por taller: 100 mL | Semana: 12.0,100 mL,,,Química,
+Coco glucoside,insumo,,,Cant. por taller: 200 mL | Semana: 12.0,200 mL,,,Química,
+Aloe Vera gel,insumo,,,Cant. por taller: 100 mL | Semana: 12.0,100 mL,,,Química,
+Extracto de manzanilla o caléndula,insumo,,,Cant. por taller: 50 mL | Semana: 12.0,50 mL,,,Química,
+Aceite de jojoba,insumo,,,Cant. por taller: 50 mL | Semana: 12.0,50 mL,,,Química,
+Leucidal,insumo,,,Cant. por taller: 20 mL | Semana: 12.0,20 mL,,,Química,
+Aceite esencial de lavanda,insumo,,,Cant. por taller: 5 mL | Semana: 12.0,5 mL,,,Química,
+Ácido Cítrico,insumo,,,Cant. por taller: 10 mL | Semana: 12.0,10 mL,,,Química,
+Ácido Láctico,insumo,,,Cant. por taller: 10 mL | Semana: 12.0,10 mL,,,Química,
+Cera de abejas,insumo,,,Cant. por taller: 600 g | Semana: 11.0,600 g,,,Química,
+Vaselina sólida,insumo,,,Cant. por taller: 450 g | Semana: 11.0,450 g,,,Química,
+Aceite de almendras  dulces,insumo,,,Cant. por taller: 450 mL | Semana: 11.0,450 mL,,,Química,
+Agua destilada,insumo,,,Cant. por taller: 1500 mL | Semana: 11.0,1500 mL,,,Química,
+Oxido de Zinc,insumo,,,Cant. por taller: 300 g | Semana: 11.0,300 g,,,Química,
+Glicerina,insumo,,,Cant. por taller: 150 g | Semana: 11.0,150 g,,,Química,
+Alcohol Cetilico,insumo,,,Cant. por taller: 300g | Semana: 10.0,300g,,,Química,
+Betaina de coco,insumo,,,Cant. por taller: 100g | Semana: 9.0,100g,,,Química,
+nitrato de plata,insumo,,,Cant. por taller:  | Semana: ,,,,Química,
+Decyl glucoside,insumo,,,Cant. por taller: 100g | Semana: 9.0,100g,,,Química,
+Procide 20,insumo,,,Cant. por taller: 100g | Semana: 9.0,100g,,,Química,
+Jabon Base Glicerina,insumo,,,Cant. por taller: 1000g | Semana: 9.0,1000g,,,Química,
+Aromatizantes cosmeticos,insumo,,,Cant. por taller: 100g | Semana: 9.0,100g,,,Química,
+colorantes cosmeticos,insumo,,,Cant. por taller: 20g | Semana: 9.0,20g,,,Química,
+Aceite escencial de menta,insumo,,,Cant. por taller: 100g | Semana: 9.0,100g,,,Química,
+pomos,insumo,,,Cant. por taller: 50 unidades | Semana: 9.0,50 unidades,,,Química,
+pomo labial,insumo,,,Cant. por taller: 50 unidades | Semana: 9.0,50 unidades,,,Química,
+pote acrilico PSGP redondo,insumo,,,Cant. por taller: 50 unidades | Semana: 9.0,50 unidades,,,Química,
+pote propileno blanco,insumo,,,Cant. por taller: 100 unidades | Semana: 9.0,100 unidades,,,Química,
+frasco camapana con tapa pet,insumo,,,Cant. por taller: 100unidades | Semana: 9.0,100unidades,,,Química,
+Frasco rolon vidrio ambar,insumo,,,Cant. por taller: 50 unidades | Semana: 10.0,50 unidades,,,Química,
+aseice escencial de lavanda,insumo,,,Cant. por taller: 50 ml | Semana: 10.0,50 ml,,,Química,
+aceite escencial de romero,insumo,,,Cant. por taller: 50ml | Semana: 10.0,50ml,,,Química,
+Aloe Vera gel,insumo,,,Cant. por taller: 200g | Semana: 10.0,200g,,,Química,
+Pantenol,insumo,,,Cant. por taller: 50ml | Semana: 10.0,50ml,,,Química,
+envase labial,insumo,,,Cant. por taller: 100 unidades | Semana: 10.0,100 unidades,,,Química,
+Agar Nutritivo,insumo,,,Cant. por taller: 100 g | Semana: 9.0,100 g,,,Química,
+Placa calefactora,implemento,,,Cant. por semestre: 5.0 | Semana: ,5.0,,,Química,
+Azul de metileno,insumo,,,Cant. por taller: 50 mL | Semana: 2 y 4,50 mL,,,Química,
+Matraces de Erlenmeyer de 250 ml,implemento,,,Cant. por semestre: 10.0 | Semana: ,10.0,,,Química,
+Set colorantes tinción de gram,insumo,,,Cant. por taller:  | Semana: 11.0,6 Set,,,Química,
+agitadores magnéticos,implemento,,,Cant. por semestre: 10.0 | Semana: ,10.0,,,Química,
+Set colorantes tinción de Ziehl Neelsen,insumo,,,Cant. por taller:  | Semana: 11.0,6 Set,,,Química,
+Papel Kraft,insumo,,,Cant. por taller: 5 Pliegos  | Semana: 7.0,5 Pliegos ,,,Química,
+Placas de Petri,insumo,,,Cant. por taller: 10.0 | Semana: 9.0,10.0,,,Química,
+Portaobjetos,insumo,,,Cant. por taller:  | Semana: 2 y 4,,,,Química,
+Cubreobjetos,insumo,,,Cant. por taller:  | Semana: ,,,,Química,
+gas,insumo,,,Cant. por taller:  | Semana: ,,,,Química,
+Asa recta,insumo,,,Cant. por taller:  | Semana: Todos,,,,Química,
+Asa en aro,insumo,,,Cant. por taller:  | Semana: Todos,,,,Química,
+Agua destilada,insumo,,,Cant. por taller:  | Semana: ,,,,Química,
+Alcohol 70%,insumo,,,Cant. por taller: 100 mL | Semana: Todos,100 mL,,,Química,
+Cápsulas (verdes) para encapsuladora manual,insumo,,,Cant. por taller: 100.0 | Semana: 7.0,100.0,,,Química,
+Balanza analítica,implemento,,,Cant. por semestre: 3.0 | Semana: ,3.0,,,Química,
+Jarabe de niños,insumo,,,Cant. por taller: 2.0 | Semana: 9.0,2.0,,,Química,
+pH metro,implemento,,,Cant. por semestre: 1.0 | Semana: ,1.0,,,Química,
+Set de Calibración de balanzas,insumo,,,Cant. por taller: 2.0 | Semana: 11.0,2.0,,,Química,
+Viscosimetro,implemento,,,Cant. por semestre:  | Semana: ,,,,Química,
+"Buffer de Calibración pH (4,01; 7,01; 10,01; y 12,01)",insumo,,,Cant. por taller: 100 mL | Semana: 9.0,100 mL,,,Química,
+Picnómetro,implemento,,,Cant. por semestre:  | Semana: ,,,,Química,
+Azucar flor,insumo,,,Cant. por taller: 1 kg | Semana: 7.0,1 kg,,,Química,
+Cápsulas (verdes) para encapsuladora manual,insumo,,,Cant. por taller: 80.0 | Semana: 8.0,80.0,,,Química,
+Hojas de impresión,insumo,,,Cant. por taller: 100.0 | Semana: 1-17,1000.0,,,Química,
+HCl (37%p/p),insumo,,,Cant. por taller: 25 mL | Semana: 4.0,25 mL,,,Química,
+Bureta de 25 mL,implemento,,,Cant. por semestre: 5.0 | Semana: ,5.0,,,Química,
+NaOH,insumo,,,Cant. por taller: 50 g | Semana: 4.0,50 g,,,Química,
+Embudo analítico,implemento,,,Cant. por semestre: 5.0 | Semana: ,5.0,,,Química,
+Nitrato de Plata,insumo,,,Cant. por taller: 50 g | Semana: 6.0,50 g,,,Química,
+Papel filtro,implemento,,,Cant. por semestre: 3 cajas | Semana: ,3 cajas,,,Química,
+NaCl (p.a),insumo,,,Cant. por taller: 50 g | Semana: 6.0,50 g,,,Química,
+Anillo metálico para embudo,implemento,,,Cant. por semestre: 5.0 | Semana: ,5.0,,,Química,
+Ácido Acético,insumo,,,Cant. por taller: 500 mL | Semana: 8.0,500 mL,,,Química,
+Placa cromatográfica,implemento,,,Cant. por semestre: 2 cajas | Semana: ,2 cajas,,,Química,
+Vinagre,insumo,,,Cant. por taller: 500 mL | Semana: 8.0,500 mL,,,Química,
+Vaso de precipitado de 250 mL,implemento,,,Cant. por semestre: 10.0 | Semana: ,10.0,,,Química,
+Alcohol Etílico 96%,insumo,,,Cant. por taller: 500 mL | Semana: 2.0,500 mL,,,Química,
+Vasos de precipitado de 100 mL,implemento,,,Cant. por semestre: 30.0 | Semana: ,30.0,,,Química,
+Bicarbonato de Sodio,insumo,,,Cant. por taller: 100 g | Semana: 2.0,100 g,,,Química,
+Vaso de precipitado de 50 mL,implemento,,,Cant. por semestre: 30.0 | Semana: ,30.0,,,Química,
+Ácido Sulfúrico (H2SO4),insumo,,,Cant. por taller: 50 mL | Semana: 2.0,50 mL,,,Química,
+Mortero,implemento,,,Cant. por semestre: 5.0 | Semana: ,5.0,,,Química,
+Carbonato de Sodio anhidro,insumo,,,Cant. por taller: 50 g | Semana: 2.0,50 g,,,Química,
+Ftalato ácido de potasio,insumo,,,Cant. por taller: 50 g | Semana: 4.0,50 g,,,Química,
+Fenolftaleína,insumo,,,Cant. por taller: 10 g | Semana: 4.0,10 g,,,Química,
+Anaranjado de Metilo,insumo,,,Cant. por taller: 10 g | Semana: 4.0,10 g,,,Química,
+Agua destilada,insumo,,,Cant. por taller: 5L | Semana: Todos,5L,,,Química,
+Espinaca,insumo,,,Cant. por taller: 1 bolsa | Semana: 10.0,1 bolsa,,,Química,
+Acetona,insumo,,,Cant. por taller: 500 mL | Semana: 10.0,500 mL,,,Química,
+Hexano,insumo,,,Cant. por taller: 500 mL | Semana: 10.0,500 mL,,,Química,
+Permanganato de potasio,insumo,,,Cant. por taller: 200 g | Semana: 12.0,200 g,,,Química,
+Agua oxigenada,insumo,,,Cant. por taller: 50 mL | Semana: 12.0,50 mL,,,Química,
+Cloruro de Niquel  (II),insumo,,,Cant. por taller: 100 g | Semana: 12.0,100 g,,,Química,
+Cloruro de Cobalto (II),insumo,,,Cant. por taller: 100 g | Semana: 12.0,100 g,,,Química,
+PISOS,insumo,,,Cant. por taller:  | Semana: TODAS LAS SEMANAS /SEMANAS POR MEDIO GRUPOS INTERCALADOS,6.0,,,TENS,ADMINISTRACION DE FARMACOS
+GUANTES S,insumo,,,Cant. por taller:  | Semana: ,5.0,,,TENS,ADMINISTRACION DE FARMACOS
+GUANTES M,insumo,,,Cant. por taller:  | Semana: ,5.0,,,TENS,ADMINISTRACION DE FARMACOS
+GUANTES L,insumo,,,Cant. por taller:  | Semana: ,5.0,,,TENS,ADMINISTRACION DE FARMACOS
+PIZARRA,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,ADMINISTRACION DE FARMACOS
+MATRAZ 500 CC SF,insumo,,,Cant. por taller:  | Semana: ,220.0,,,TENS,ADMINISTRACION DE FARMACOS
+AMPOLLAS SF,insumo,,,Cant. por taller:  | Semana: ,500.0,,,TENS,ADMINISTRACION DE FARMACOS
+JERINGA 1 CC,insumo,,,Cant. por taller:   | Semana: , ,,,TENS,ADMINISTRACION DE FARMACOS
+VIALES DE SIMULACION (MULTIDOSIS),insumo,,,Cant. por taller: 20.0 | Semana: ,200.0,,,TENS,ADMINISTRACION DE FARMACOS
+VIAL LIOFILIZADO PARA DILUIR,insumo,,,Cant. por taller:  | Semana: ,120.0,,,TENS,ADMINISTRACION DE FARMACOS
+AMPOLLAS DE VIDRIO PARA APERTURA,insumo,,,Cant. por taller:  | Semana: ,350.0,,,TENS,ADMINISTRACION DE FARMACOS
+JERINGA 3 CC,insumo,,,Cant. por taller:  | Semana: ,500.0,,,TENS,ADMINISTRACION DE FARMACOS
+JERINGA 5 CC,insumo,,,Cant. por taller:  | Semana: ,500.0,,,TENS,ADMINISTRACION DE FARMACOS
+JERINGA 10 CC,insumo,,,Cant. por taller:  | Semana: ,500.0,,,TENS,ADMINISTRACION DE FARMACOS
+JERINGA 20 CC,insumo,,,Cant. por taller:  | Semana: ,500.0,,,TENS,ADMINISTRACION DE FARMACOS
+MATRAZ  SOLUCION SALINA  250 O 100 CC,insumo,,,Cant. por taller:  | Semana: ,120.0,,,TENS,ADMINISTRACION DE FARMACOS
+ALCOHOL,insumo,,,Cant. por taller:  | Semana: ,,,,TENS,ADMINISTRACION DE FARMACOS
+EQUIPO FEBLOCLISIS,insumo,,,Cant. por taller:  | Semana: ,120.0,,,TENS,ADMINISTRACION DE FARMACOS
+REGULADOR DE  FLUJO  (CUENTAGOTAS),insumo,,,Cant. por taller:  | Semana: ,120.0,,,TENS,ADMINISTRACION DE FARMACOS
+TAPON COMBY ROJO,insumo,,,Cant. por taller:  | Semana: ,200.0,,,TENS,ADMINISTRACION DE FARMACOS
+ALCOHOL 70% FRASCO 250 CC,insumo,,,Cant. por taller:  | Semana: ,5.0,,,TENS,ADMINISTRACION DE FARMACOS
+ALGODON TORULA PEQUEÑA,insumo,,,Cant. por taller:  | Semana: ,,,,TENS,ADMINISTRACION DE FARMACOS
+PINZA KELLY,insumo,,,Cant. por taller:  | Semana: ,3.0,,,TENS,ADMINISTRACION DE FARMACOS
+CAJAS DE ELIMINACION CP,insumo,,,Cant. por taller:  | Semana: ,4.0,,,TENS,ADMINISTRACION DE FARMACOS
+AGUJAS 21 G,insumo,,,Cant. por taller:  | Semana: ,500.0,,,TENS,ADMINISTRACION DE FARMACOS
+AGUJAS 18G,insumo,,,Cant. por taller:  | Semana: ,120.0,,,TENS,ADMINISTRACION DE FARMACOS
+enema  solucion,insumo,,,Cant. por taller:  | Semana: ,20.0,,,TENS,ADMINISTRACION DE FARMACOS
+Anexo:,insumo,,,Cant. por taller:  | Semana: ,,,,TENS,ADMINISTRACION DE FARMACOS
+HOJAS DE REGISTRO,insumo,,,Cant. por taller:  | Semana: ,,,,TENS,ADMINISTRACION DE FARMACOS
+TARJETAS DE INDICACION,insumo,,,Cant. por taller:  | Semana: ,,,,TENS,ADMINISTRACION DE FARMACOS
+TARJETERO,insumo,,,Cant. por taller:  | Semana: ,,,,TENS,ADMINISTRACION DE FARMACOS
+ALCOHOL GEL,insumo,,,Cant. por taller:  | Semana: MANTENER DURANTE TODOS LOS TALLERES,6.0,,,TENS,Medico quirurgico
+"ELECTROCARDIOGRAFO (CON SUS RESPECTIVAS DERIVACIONES, BIPOLARES Y PRECORDIALES)",implemento,,,Cant. por semestre: 2.0 | Semana: SEMANA 2 ,2.0,,,TENS,Medico quirurgico
+BOLSA TÓRULAS DE ALGODÓN,insumo,,,Cant. por taller:  | Semana: ,4.0,,,TENS,Medico quirurgico
+MONITOR MULTIPARAMETRO,implemento,,,Cant. por semestre: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+ALCOHOL AL 70%,insumo,,,Cant. por taller:  | Semana: ,6.0,,,TENS,Medico quirurgico
+FANTOMA ADULTO,implemento,,,Cant. por semestre: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+GUANTES S,insumo,,,Cant. por taller:  | Semana: ,6.0,,,TENS,Medico quirurgico
+FANTOMA CON CVC INSTALADO,implemento,,,Cant. por semestre: 1.0 | Semana: SEMANA 3,1.0,,,TENS,Medico quirurgico
+GUANTES M,insumo,,,Cant. por taller:  | Semana: ,6.0,,,TENS,Medico quirurgico
+BOMBA DE INFUSION,implemento,,,Cant. por semestre: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+GUANTES L,insumo,,,Cant. por taller:  | Semana: ,6.0,,,TENS,Medico quirurgico
+RIÑON METALICO,implemento,,,Cant. por semestre: 6.0 | Semana: ,6.0,,,TENS,Medico quirurgico
+TELA ADHESIVA,insumo,,,Cant. por taller:  | Semana: ,10.0,,,TENS,Medico quirurgico
+RED DE AIRE Y OXIGENO,implemento,,,Cant. por semestre: 2.0 | Semana: SEMANA 4,2.0,,,TENS,Medico quirurgico
+ROLLO PAPEL CLINIC,insumo,,,Cant. por taller:  | Semana: ,10.0,,,TENS,Medico quirurgico
+FLUJOMETRO,implemento,,,Cant. por semestre: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+GEL CONDUCTOR,insumo,,,Cant. por taller:  | Semana: SEMANA 2 ,1.0,,,TENS,Medico quirurgico
+HUMIDIFICADOR,implemento,,,Cant. por semestre: 4.0 | Semana: ,4.0,,,TENS,Medico quirurgico
+PAPEL MILIMETRADO PARA ELECTROCARDIOGRAFO,insumo,,,Cant. por taller:  | Semana: ,1.0,,,TENS,Medico quirurgico
+NIPLE,implemento,,,Cant. por semestre: 4.0 | Semana: ,4.0,,,TENS,Medico quirurgico
+BAJADA DE SUERO,insumo,,,Cant. por taller: 5.0 | Semana: SEMANA 3,5.0,,,TENS,Medico quirurgico
+SATUROMETRO,implemento,,,Cant. por semestre: 4.0 | Semana: ,4.0,,,TENS,Medico quirurgico
+SUERO FISIOLOGICO 5 CC,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+COPELA,implemento,,,Cant. por semestre: 4.0 | Semana: SEMANA 7,4.0,,,TENS,Medico quirurgico
+SUERO FISIOLOGICO DE 10CC,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+MOTOR DE ASPIRACIÓN,implemento,,,Cant. por semestre: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+SUERO FISIOLOGICO DE 500CC,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+SATUROMETRO,implemento,,,Cant. por semestre: 4.0 | Semana: ,4.0,,,TENS,Medico quirurgico
+SUERO FISIOLOGICO DE 1000CC,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+RECIPIENTE DE ASPIRACIÓN,implemento,,,Cant. por semestre: 4.0 | Semana: ,4.0,,,TENS,Medico quirurgico
+SUERO RINGER,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+BANDEJA METALICA,implemento,,,Cant. por semestre: 8.0 | Semana: ,8.0,,,TENS,Medico quirurgico
+SUERO GLUCOSADO 5%,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+BOMBA INFUSIÓN NE,implemento,,,Cant. por semestre: 1.0 | Semana: SEMANA 7 ,1.0,,,TENS,Medico quirurgico
+GUANTES ESTERILES 6.5,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+FONENDOSCOPIO,implemento,,,Cant. por semestre: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+GUANTES ESTERILES 7.0,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+FANTOMA CON CONNTENIDO GASTRICO SIMULADO,implemento,,,Cant. por semestre: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+GUANTES ESTERILES 7.5,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+FANTOMA CON APARATO GENITAL FEMENINO Y MASCULINO,implemento,,,Cant. por semestre: 1.0 | Semana: SEMANA 8,1.0,,,TENS,Medico quirurgico
+APOSITO TRANSPARENTE,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+BIOMBO,implemento,,,Cant. por semestre: 4.0 | Semana: ,4.0,,,TENS,Medico quirurgico
+CLORHEXIDINA AL 2%,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+CHATA,implemento,,,Cant. por semestre: 4.0 | Semana: ,4.0,,,TENS,Medico quirurgico
+TAPON ANTIRREFLUJO,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+RIÑON METALICO,implemento,,,Cant. por semestre: 8.0 | Semana: ,8.0,,,TENS,Medico quirurgico
+APOSITO DE GASA,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+FANTOMA CON HERIDA QUIRUGICA,implemento,,,Cant. por semestre: 1.0 | Semana: SEMANA 9,1.0,,,TENS,Medico quirurgico
+JERINGA DE 10CC,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+MESA MAYO,implemento,,,"Cant. por semestre: 2.0 | Semana: SEMANA 13, 14 Y 15 ",2.0,,,TENS,Medico quirurgico
+AGUA BIDESTILADA,insumo,,,Cant. por taller: 10.0 | Semana: SEMANA 4,10.0,,,TENS,Medico quirurgico
+PESA,implemento,,,Cant. por semestre: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+CANULA NASAL,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+TALLIMETRO,implemento,,,Cant. por semestre: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+MASCARILLA SIMPLE,insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+TERMOMETRO,implemento,,,Cant. por semestre: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+MASCARILLA CON RESERVORIO,insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+MASCARILLA VENTURI,insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+MASCARILLA DE NEBULIZACIÓN,insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+"MEDICAMENTO DE NEBULIZACIÓN (SALBUTAMOL, BERODUAL, BROMURO DE IPATROPIO)",insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+JERINGA 5CC,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+SEMANA 5 EVALUACIÓN TALLERES PREVIOS,insumo,,,Cant. por taller:  | Semana: ,,,,TENS,Medico quirurgico
+PECHERA DESECHABLE MANGA LARGA,insumo,,,Cant. por taller: 20.0 | Semana: SEMANA 7,20.0,,,TENS,Medico quirurgico
+MASCARILLA QUIRURGICA,insumo,,,Cant. por taller: 20.0 | Semana: ,20.0,,,TENS,Medico quirurgico
+ANTIPARRA,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+SONDA DE ASPIRACIÓN DISTINTOS CALIBRES,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+KIT DE CURACIÓN,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+ENDOCANULA DE TRAQUEOSTOMIA,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+CINTA PARA FIJACIÓN DE TRAQUEOSTMÍA,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+FILTRO PARA TRAQUEOSTOMÍA,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+PREPARACIÓN ENTERAL (PAPILLA),insumo,,,Cant. por taller: 1.0 | Semana: SEMANA 7,1.0,,,TENS,Medico quirurgico
+VASO PLASTICO,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+JERINGA DE ALIMENTACIÓN,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+SONDA LEVIN DIFERENTE LUMENES,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+SONDA NASOENTERAL,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+BAJADA DE ALIMENTACIÓN PARA BOMBA DE INFUSIÓN,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+TAPON SONDA,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+BOLSA DE ALIMENTACIÓN,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+SONDA FOLEY,insumo,,,Cant. por taller: 5.0 | Semana: SEMANA 8 ,5.0,,,TENS,Medico quirurgico
+SONDA NELATON,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+SISTEMA DE IRRIGACIÓN VESICAL,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+SUERO FISIOLOGICO DE 30000,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+AGUA ESTERIL 20 CC,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+VASELINA ESTERIL 10 CC,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+PECHERA DESECHABLE,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+FRASCO GRADUADO PARA MEDICIÓN DE ORINA,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+BOLSA RECOLECTORA,insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+JERINGA DE 20CC,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+MUSLERA,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+PAÑO PERFORADO,insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+FIXOMUL,insumo,,,Cant. por taller: 1.0 | Semana: SEMANA 9 ,1.0,,,TENS,Medico quirurgico
+DRENAJE REDON,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+CONTENIDO HEMATICO (AGUA CON COLORANTE),insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+DRENAJE AQUASEAL,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+DRENAJE JACKSON PRATT,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+KIT DE CURACIÓN,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+"APOSITO BIOACTIVO , HIDROGEL",insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+APOSITO ESPUMA HIDROFILICA,insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+VENDA ELASTOMULL,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+DRENAJE PENROSE,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+DRENAJE T,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+DRENAJE SARATOGA,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+BOLSA DE OSTOMIA,insumo,,,Cant. por taller: 2.0 | Semana: SEMANA 10 ,2.0,,,TENS,Medico quirurgico
+PLACA BOLSA DE OSTOMIA,insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+PLANTILLA CIRCULAR PARA MEDIR ESTOMA,insumo,,,Cant. por taller: 2.0 | Semana: ,2.0,,,TENS,Medico quirurgico
+POLVO DE CARALLA,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+CAVILON,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+PASTA LASSAR,insumo,,,Cant. por taller: 1.0 | Semana: ,1.0,,,TENS,Medico quirurgico
+SEMANA  11 EVALUACIÓN TALLERES PREVIOS,insumo,,,Cant. por taller:  | Semana: ,,,,TENS,Medico quirurgico
+COMPRESA ESTERIL,insumo,,,"Cant. por taller: 5.0 | Semana: SEMANA 12 , 13 Y 14",5.0,,,TENS,Medico quirurgico
+ROPA DE CIRCULACIÓN DE PABELLÓN,insumo,,,Cant. por taller: 5.0 | Semana: ,5.0,,,TENS,Medico quirurgico
+PAQUETE DE ROPA ESTERIL  (DELANTAL QUIRURGICO Y PAÑO DE CAMPO),insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+COFIA,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+HOJA DE ANESTESIA,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+CUBRE CALZADO,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+FICHA DE INGRESO DE ENFERNERIA,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+FICHA DIARIA DE PACIENTE,insumo,,,Cant. por taller: 10.0 | Semana: ,10.0,,,TENS,Medico quirurgico
+SEMANA  15 EVALUACIÓN TALLERES PREVIOS,insumo,,,Cant. por taller:  | Semana: ,,,,TENS,Medico quirurgico
