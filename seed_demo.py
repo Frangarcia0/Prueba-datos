@@ -80,11 +80,11 @@ random.seed(42)
 
 IN = "insumo"
 IM = "implemento"
-TENS = CarreraAsignatura.TENS
-TQF  = CarreraAsignatura.TQF
+TENS  = CarreraAsignatura.TENS
+TQF   = CarreraAsignatura.TQF
 TLCBS = CarreraAsignatura.TLCBS
-TONS = CarreraAsignatura.TONS
-PF   = CarreraAsignatura.preparador_fisico
+TONS  = CarreraAsignatura.TONS
+PF    = CarreraAsignatura.preparador_fisico
 
 SALAS = [
     ("Sala 010", "simulacion", "Sala de simulacion clinica - piso -1"),
@@ -124,7 +124,7 @@ USUARIOS = [
 
 # Formato: (nombre, email, rut)
 # Los docentes NO tienen cuenta en Hestia; son entidades externas gestionadas
-# por el operador coordinador. docente_idx 0 y 1 se referencian en CLASES_DOCENTE.
+# por el operador coordinador.
 DOCENTES_DATA = [
     ("Paz Rodriguez", "paz.rodriguez@duoc.cl", "12.345.678-9"),
     ("Michael Torres", "michael.torres@duoc.cl", "98.765.432-1"),
@@ -153,17 +153,17 @@ ASIGNATURAS = [
     ("Evaluacion para la Condicion Fisica", "EAS1102", PF),
 ]
 
-# Formato: (docente_idx, asig_idx, seccion, semestre, num_estudiantes)
-# docente_idx referencia DOCENTES_DATA (0=Paz, 1=Michael)
+# Formato: (docente_nombre, asig_codigo, seccion, semestre, num_estudiantes)
+# docente_nombre referencia DOCENTES_DATA; asig_codigo referencia ASIGNATURAS.
 CLASES_DOCENTE = [
-    (0, 0, "001D", "2026-1", 28),
-    (0, 1, "001D", "2026-1", 32),
-    (1, 2, "001D", "2026-1", 30),
-    (1, 3, "002D", "2026-1", 35),
-    (0, 5, "001D", "2026-1", 22),
-    (1, 9, "001D", "2026-1", 25),
-    (0, 13, "001D", "2026-1", 20),
-    (1, 17, "001D", "2026-1", 18),
+    ("Paz Rodriguez",  "CIS1101", "001D", "2026-1", 28),
+    ("Paz Rodriguez",  "CIS1102", "001D", "2026-1", 32),
+    ("Michael Torres", "CIS1103", "001D", "2026-1", 30),
+    ("Michael Torres", "CIS1104", "002D", "2026-1", 35),
+    ("Paz Rodriguez",  "PFS1115", "001D", "2026-1", 22),
+    ("Michael Torres", "LCS1111", "001D", "2026-1", 25),
+    ("Paz Rodriguez",  "ACS1101", "001D", "2026-1", 20),
+    ("Michael Torres", "FES1101", "001D", "2026-1", 18),
 ]
 
 # Formato: (nombre, unidad_medida, stock, minimo, cat_idx, tipo, costo)
@@ -314,27 +314,29 @@ MOTIVOS_ENTRADA = [
     "Recepcion pedido proveedor",
 ]
 
+# Formato: (nombre, descripcion, asig_codigo)
+# asig_codigo referencia ASIGNATURAS por codigo unico.
 TALLERES_DATA = [
     ("Taller de venopuncion",
-     "Practica de cateterizacion venosa periferica", 0),
+     "Practica de cateterizacion venosa periferica", "CIS1101"),
     ("Taller de sutura basica",
-     "Tecnicas de sutura y cierre de heridas en simulador", 0),
+     "Tecnicas de sutura y cierre de heridas en simulador", "CIS1101"),
     ("Taller de RCP avanzado",
-     "Reanimacion cardiopulmonar con maniqui de alta fidelidad", 2),
+     "Reanimacion cardiopulmonar con maniqui de alta fidelidad", "CIS1103"),
     ("Taller de cuidados al recien nacido",
-     "Atencion y cuidados del recien nacido en simulador neonatal", 4),
+     "Atencion y cuidados del recien nacido en simulador neonatal", "CIS1103B"),
     ("Taller de bioseguridad y EPP",
-     "Uso correcto de equipos de proteccion personal", 6),
+     "Uso correcto de equipos de proteccion personal", "BIS1102"),
     ("Taller de quimica analitica",
-     "Preparacion de reactivos y tecnicas de laboratorio farmaceutico", 5),
+     "Preparacion de reactivos y tecnicas de laboratorio farmaceutico", "PFS1115"),
     ("Taller de toma de muestra",
-     "Tecnicas de extraccion de muestra y flebotomia", 10),
+     "Tecnicas de extraccion de muestra y flebotomia", "ATS1111"),
     ("Taller de bioseguridad de laboratorio",
-     "Uso correcto de EPP y manejo de residuos en laboratorio clinico", 11),
+     "Uso correcto de EPP y manejo de residuos en laboratorio clinico", "BIS1111"),
     ("Taller de primeros auxilios odontologicos",
-     "Manejo de emergencias y primeros auxilios en clinica dental", 14),
+     "Manejo de emergencias y primeros auxilios en clinica dental", "ACS1102"),
     ("Taller de evaluacion de condicion fisica",
-     "Medicion de parametros antropometricos y test de capacidad fisica", 19),
+     "Medicion de parametros antropometricos y test de capacidad fisica", "EAS1102"),
 ]
 
 PAQUETES_DATA = [
@@ -389,6 +391,10 @@ PAQUETES_DATA = [
 ]
 
 
+# ===========================================================================
+# Utilidades
+# ===========================================================================
+
 def _prefijo_codigo(nombre: str) -> str:
     """Misma logica que el backend para generar prefijo de 3 chars."""
     n = (
@@ -434,6 +440,362 @@ def _crear_paquete(db, taller_id, semestre, notas, usuario_id,
     return p
 
 
+# ===========================================================================
+# Helpers de insercion
+# ===========================================================================
+
+def _limpiar(db) -> None:
+    print("\nLimpiando datos existentes...")
+    db.query(RevisionSalaItem).delete()
+    db.query(RevisionSala).delete()
+    db.query(OrdenMantenimientoItem).delete()
+    db.query(PaqueteItem).delete()
+    db.query(PaqueteInsumo).delete()
+    db.query(ProgramacionTaller).delete()
+    db.query(Taller).delete()
+    db.query(UnidadImplemento).delete()
+    db.query(OrdenMantenimiento).delete()
+    db.query(Incidencia).delete()
+    db.query(OrdenEntradaItem).delete()
+    db.query(OrdenEntrada).delete()
+    db.query(ActivoFijo).delete()
+    db.query(Proveedor).delete()
+    db.query(RetornoImplemento).delete()
+    db.query(AuditLog).delete()
+    db.query(SolicitudItem).delete()
+    db.query(SolicitudRetiro).delete()
+    db.query(Movimiento).delete()
+    db.query(ClaseDocente).delete()
+    db.query(ComentarioDocente).delete()
+    db.query(Docente).delete()
+    db.query(Insumo).delete()
+    db.query(Asignatura).delete()
+    db.query(Sala).delete()
+    db.query(Categoria).delete()
+    db.query(Usuario).delete()
+    db.commit()
+    print("  OK")
+
+
+def _insertar_salas(db) -> list:
+    print("Insertando salas...")
+    salas = []
+    for nombre, tipo, desc in SALAS:
+        s = Sala(nombre=nombre, tipo=tipo, descripcion=desc)
+        db.add(s)
+        salas.append(s)
+    db.flush()
+    print(f"  {len(salas)} salas")
+    return salas
+
+
+def _insertar_categorias(db) -> list:
+    print("Insertando categorias...")
+    cats = []
+    for nombre in CATEGORIAS:
+        c = Categoria(nombre=nombre)
+        db.add(c)
+        cats.append(c)
+    db.flush()
+    print(f"  {len(cats)} categorias")
+    return cats
+
+
+def _insertar_usuarios(db) -> tuple:
+    print("Insertando usuarios...")
+    usuarios = []
+    for nombre, email, pwd, rol in USUARIOS:
+        u = Usuario(
+            nombre=nombre, email=email,
+            password_hash=hashear_password(pwd), rol=rol,
+        )
+        db.add(u)
+        usuarios.append(u)
+    db.flush()
+    operadores = [u for u in usuarios if u.rol == RolUsuario.operador]
+    print(f"  {len(usuarios)} usuarios")
+    return usuarios, operadores
+
+
+def _insertar_proveedores(db) -> dict:
+    print("Insertando proveedores...")
+    prov_laerdal = Proveedor(
+        nombre="Laerdal Medical Chile SpA",
+        rut="76.543.210-K",
+        contacto_nombre="Roberto Salas",
+        contacto_email="rsalas@laerdal.cl",
+        telefono="+56 2 2345 6789",
+        url_seneg="https://www.senegocia.com/proveedor/laerdal-chile",
+        notas=(
+            "Proveedor oficial de phantomas Laerdal. "
+            "Mantenimiento preventivo semestral incluido en contrato."
+        ),
+    )
+    prov_medsupply = Proveedor(
+        nombre="MedSupply SpA",
+        rut="76.111.222-3",
+        contacto_nombre="Patricia Vega",
+        contacto_email="pvega@medsupply.cl",
+        telefono="+56 9 8765 4321",
+        url_seneg=None,
+        notas="Proveedor general de insumos medicos desechables.",
+    )
+    db.add(prov_laerdal)
+    db.add(prov_medsupply)
+    db.flush()
+    print("  2 proveedores (Laerdal Chile, MedSupply SpA)")
+    return {"laerdal": prov_laerdal.id, "medsupply": prov_medsupply.id}
+
+
+def _insertar_docentes(db) -> dict:
+    print("Insertando docentes...")
+    docentes_por_nombre = {}
+    for nombre, email, rut in DOCENTES_DATA:
+        d = Docente(nombre=nombre, email=email, rut=rut, activo=True)
+        db.add(d)
+        docentes_por_nombre[nombre] = d
+    db.flush()
+    print(f"  {len(docentes_por_nombre)} docentes (Paz Rodriguez, Michael Torres)")
+    return docentes_por_nombre
+
+
+def _insertar_asignaturas(db) -> dict:
+    print("Insertando asignaturas...")
+    asignaturas_por_codigo = {}
+    for nombre, codigo, carrera in ASIGNATURAS:
+        a = Asignatura(nombre=nombre, codigo=codigo, carrera=carrera)
+        db.add(a)
+        asignaturas_por_codigo[codigo] = a
+    db.flush()
+    print(f"  {len(asignaturas_por_codigo)} asignaturas (5 carreras)")
+    return asignaturas_por_codigo
+
+
+def _insertar_clases(db, docentes_por_nombre, asignaturas_por_codigo) -> list:
+    print("Insertando clases...")
+    clases = []
+    for doc_nombre, asig_codigo, seccion, semestre, num_est in CLASES_DOCENTE:
+        c = ClaseDocente(
+            docente_id=docentes_por_nombre[doc_nombre].id,
+            asignatura_id=asignaturas_por_codigo[asig_codigo].id,
+            seccion=seccion, semestre=semestre, num_estudiantes=num_est,
+        )
+        db.add(c)
+        clases.append(c)
+    db.flush()
+    print(f"  {len(clases)} clases (semestre 2026-1)")
+    return clases
+
+
+def _insertar_insumos(db, cats) -> list:
+    print("Insertando insumos...")
+    insumos_db = []
+    for nombre, unidad_medida, stock, minimo, cat_idx, tipo, costo in INSUMOS:
+        i = Insumo(
+            nombre=nombre,
+            descripcion=unidad_medida,
+            unidad_medida=unidad_medida,
+            stock_actual=stock,
+            stock_minimo=minimo,
+            sala_id=None,
+            categoria_id=cats[cat_idx].id,
+            tipo=TipoInsumo(tipo),
+            costo_unitario=costo,
+        )
+        db.add(i)
+        insumos_db.append(i)
+    db.flush()
+    for ins in insumos_db:
+        if not ins.sku:
+            ins.sku = f"HST-{ins.id:05d}"
+    db.flush()
+    n_implementos = sum(1 for i in insumos_db if i.tipo == TipoInsumo.implemento)
+    print(f"  {len(insumos_db)} insumos ({n_implementos} implementos)")
+    return insumos_db
+
+
+def _insertar_unidades_implemento(db, implementos_list, salas, cats) -> int:
+    print("Insertando unidades fisicas de implementos...")
+    total_unidades = 0
+    salas_clinicas = salas[:3]
+    for impl in implementos_list:
+        prefijo = _prefijo_codigo(impl.nombre)
+        cantidad = random.randint(2, 5)
+        for j in range(cantidad):
+            estado = random.choice([
+                EstadoUnidad.disponible, EstadoUnidad.disponible,
+                EstadoUnidad.disponible, EstadoUnidad.en_uso,
+            ])
+            if j == 0 and impl.categoria_id == cats[0].id:
+                sala_asignada = salas_clinicas[0].id
+            elif j == 1 and impl.categoria_id == cats[0].id:
+                sala_asignada = salas_clinicas[1].id
+            else:
+                sala_asignada = None
+            u = UnidadImplemento(
+                implemento_id=impl.id,
+                estado=estado,
+                sala_id=sala_asignada,
+            )
+            db.add(u)
+            db.flush()
+            u.codigo = f"{prefijo}-{u.id:05d}"
+            total_unidades += 1
+    db.commit()
+    print(
+        f"  {total_unidades} unidades "
+        f"({len(implementos_list)} implementos cubiertos)"
+    )
+    return total_unidades
+
+
+def _insertar_activos_fijos(db, salas, proveedores_map) -> tuple:
+    print("Insertando activos fijos...")
+    activos_db = []
+    for (nombre, desc, tipo, sala_idx,
+         fidelidad, notas, prov_key) in ACTIVOS_FIJOS_DEMO:
+        prov_id = proveedores_map.get(prov_key) if prov_key else None
+        af = ActivoFijo(
+            nombre=nombre, descripcion=desc, tipo=tipo,
+            sala_id=salas[sala_idx].id, fidelidad=fidelidad,
+            estado=EstadoActivo.disponible, notas=notas,
+            proveedor_id=prov_id,
+        )
+        db.add(af)
+        activos_db.append(af)
+        db.flush()
+        prefijo_af = "MUE" if tipo == TipoActivo.mueble else "PHN"
+        af.codigo_interno = f"{prefijo_af}-{af.id:05d}"
+    db.commit()
+    n_muebles = sum(1 for a in ACTIVOS_FIJOS_DEMO if a[2] == TipoActivo.mueble)
+    n_phantomas = len(ACTIVOS_FIJOS_DEMO) - n_muebles
+    print(
+        f"  {len(activos_db)} activos fijos "
+        f"({n_muebles} muebles, {n_phantomas} phantomas)"
+    )
+    return activos_db, n_muebles, n_phantomas
+
+
+def _insertar_orden_mantenimiento(db, activos_db, proveedores_map, usuarios) -> None:
+    print("Insertando orden de mantenimiento demo...")
+    simman = activos_db[3]   # SimMan 3G
+    als = activos_db[5]      # ALS Simulator neonatal
+    simman.estado = EstadoActivo.en_mantenimiento
+    als.estado = EstadoActivo.en_mantenimiento
+
+    orden_demo = OrdenMantenimiento(
+        proveedor_id=proveedores_map["laerdal"],
+        creado_por_id=usuarios[1].id,
+        estado=EstadoOrden.en_curso,
+        fecha_visita=date.today() - timedelta(days=12),
+        notas=(
+            "Visita semestral preventiva Laerdal Chile. "
+            "SimMan con falla en modulo de sonidos respiratorios. "
+            "ALS Neonatal: revision de bateria y sensores."
+        ),
+    )
+    db.add(orden_demo)
+    db.flush()
+
+    db.add(OrdenMantenimientoItem(
+        orden_id=orden_demo.id,
+        activo_fijo_id=simman.id,
+        resultado=ResultadoItem.pendiente,
+        descripcion_problema=(
+            "Falla en modulo de sonidos respiratorios. "
+            "No reproduce ruidos pulmonares durante simulacion "
+            "de insuficiencia respiratoria."
+        ),
+    ))
+    db.add(OrdenMantenimientoItem(
+        orden_id=orden_demo.id,
+        activo_fijo_id=als.id,
+        resultado=ResultadoItem.pendiente,
+        descripcion_problema=(
+            "Revision preventiva de bateria y calibracion de sensores."
+        ),
+    ))
+    db.commit()
+    print("  1 orden (2 items: SimMan 3G + ALS Neonatal, en_curso)")
+
+
+def _insertar_movimientos(db, insumos_db, usuarios, operadores) -> int:
+    print("Insertando movimientos...")
+    total_movs = 0
+    for insumo in insumos_db:
+        en_alerta = insumo.stock_actual <= insumo.stock_minimo
+        ne = random.randint(1, 2) if en_alerta else random.randint(2, 4)
+        ns = random.randint(5, 9) if en_alerta else random.randint(3, 7)
+        rne = (40, 60) if en_alerta else (3, 50)
+        rns = (0, 25) if en_alerta else (0, 50)
+        subtipo_salida = (
+            SubtipoMovimiento.prestamo_implemento
+            if insumo.tipo == TipoInsumo.implemento
+            else SubtipoMovimiento.consumo_taller
+        )
+        for _ in range(ne):
+            db.add(Movimiento(
+                tipo=TipoMovimiento.entrada,
+                subtipo=SubtipoMovimiento.compra,
+                cantidad=random.randint(30, 150),
+                motivo=random.choice(MOTIVOS_ENTRADA),
+                fecha=fecha_aleatoria(*rne),
+                insumo_id=insumo.id,
+                usuario_id=random.choice(operadores).id,
+            ))
+            total_movs += 1
+        for _ in range(ns):
+            db.add(Movimiento(
+                tipo=TipoMovimiento.salida,
+                subtipo=subtipo_salida,
+                cantidad=random.randint(1, 8),
+                motivo=random.choice(MOTIVOS_SALIDA),
+                fecha=fecha_aleatoria(*rns),
+                insumo_id=insumo.id,
+                usuario_id=random.choice(usuarios).id,
+            ))
+            total_movs += 1
+    db.commit()
+    print(f"  {total_movs} movimientos (tipo + subtipo)")
+    return total_movs
+
+
+def _insertar_talleres(db, asignaturas_por_codigo) -> list:
+    print("Insertando talleres...")
+    talleres_db = []
+    for nombre, desc, asig_codigo in TALLERES_DATA:
+        t = Taller(
+            nombre=nombre, descripcion=desc,
+            asignatura_id=asignaturas_por_codigo[asig_codigo].id,
+        )
+        db.add(t)
+        talleres_db.append(t)
+    db.flush()
+    print(f"  {len(talleres_db)} talleres (5 carreras)")
+    return talleres_db
+
+
+def _insertar_paquetes(db, talleres_db, insumos_db, usuarios) -> int:
+    print("Insertando paquetes de insumos...")
+    total_paquetes = 0
+    for taller_idx, semestre, notas, items in PAQUETES_DATA:
+        _crear_paquete(
+            db,
+            taller_id=talleres_db[taller_idx].id,
+            semestre=semestre, notas=notas,
+            usuario_id=usuarios[1].id,
+            items=items, insumos_db=insumos_db,
+        )
+        total_paquetes += 1
+    db.commit()
+    print(f"  {total_paquetes} paquetes (5 carreras, semestre 2026-1)")
+    return total_paquetes
+
+
+# ===========================================================================
+# Punto de entrada
+# ===========================================================================
+
 def main():
     db = SessionLocal()
     try:
@@ -445,348 +807,32 @@ def main():
             print("Cancelado.")
             return
 
-        # --- Limpiar en orden FK ---
-        print("\nLimpiando datos existentes...")
-        db.query(RevisionSalaItem).delete()
-        db.query(RevisionSala).delete()
-        db.query(OrdenMantenimientoItem).delete()
-        db.query(PaqueteItem).delete()
-        db.query(PaqueteInsumo).delete()
-        db.query(ProgramacionTaller).delete()
-        db.query(Taller).delete()
-        db.query(UnidadImplemento).delete()
-        db.query(OrdenMantenimiento).delete()
-        db.query(Incidencia).delete()
-        db.query(OrdenEntradaItem).delete()
-        db.query(OrdenEntrada).delete()
-        db.query(ActivoFijo).delete()
-        db.query(Proveedor).delete()
-        db.query(RetornoImplemento).delete()
-        db.query(AuditLog).delete()
-        db.query(SolicitudItem).delete()
-        db.query(SolicitudRetiro).delete()
-        db.query(Movimiento).delete()
-        db.query(ClaseDocente).delete()
-        db.query(ComentarioDocente).delete()
-        db.query(Docente).delete()
-        db.query(Insumo).delete()
-        db.query(Asignatura).delete()
-        db.query(Sala).delete()
-        db.query(Categoria).delete()
-        db.query(Usuario).delete()
-        db.commit()
-        print("  OK")
+        _limpiar(db)
+        salas                = _insertar_salas(db)
+        cats                 = _insertar_categorias(db)
+        usuarios, operadores = _insertar_usuarios(db)
+        proveedores_map      = _insertar_proveedores(db)
+        docentes_por_nombre  = _insertar_docentes(db)
+        asignaturas_por_codigo = _insertar_asignaturas(db)
+        clases = _insertar_clases(db, docentes_por_nombre, asignaturas_por_codigo)
+        insumos_db = _insertar_insumos(db, cats)
+        implementos_list = [i for i in insumos_db if i.tipo == TipoInsumo.implemento]
+        total_unidades = _insertar_unidades_implemento(db, implementos_list, salas, cats)
+        activos_db, n_muebles, n_phantomas = _insertar_activos_fijos(db, salas, proveedores_map)
+        _insertar_orden_mantenimiento(db, activos_db, proveedores_map, usuarios)
+        total_movs     = _insertar_movimientos(db, insumos_db, usuarios, operadores)
+        talleres_db    = _insertar_talleres(db, asignaturas_por_codigo)
+        total_paquetes = _insertar_paquetes(db, talleres_db, insumos_db, usuarios)
 
-        # --- Salas ---
-        print("Insertando salas...")
-        salas = []
-        for nombre, tipo, desc in SALAS:
-            s = Sala(nombre=nombre, tipo=tipo, descripcion=desc)
-            db.add(s)
-            salas.append(s)
-        db.flush()
-        print(f"  {len(salas)} salas")
-
-        # --- Categorias ---
-        print("Insertando categorias...")
-        cats = []
-        for nombre in CATEGORIAS:
-            c = Categoria(nombre=nombre)
-            db.add(c)
-            cats.append(c)
-        db.flush()
-        print(f"  {len(cats)} categorias")
-
-        # --- Usuarios ---
-        print("Insertando usuarios...")
-        usuarios = []
-        for nombre, email, pwd, rol in USUARIOS:
-            u = Usuario(
-                nombre=nombre, email=email,
-                password_hash=hashear_password(pwd), rol=rol,
-            )
-            db.add(u)
-            usuarios.append(u)
-        db.flush()
-        operadores = [u for u in usuarios if u.rol == RolUsuario.operador]
-        print(f"  {len(usuarios)} usuarios")
-
-        # --- Proveedores ---
-        print("Insertando proveedores...")
-        prov_laerdal = Proveedor(
-            nombre="Laerdal Medical Chile SpA",
-            rut="76.543.210-K",
-            contacto_nombre="Roberto Salas",
-            contacto_email="rsalas@laerdal.cl",
-            telefono="+56 2 2345 6789",
-            url_seneg="https://www.senegocia.com/proveedor/laerdal-chile",
-            notas=(
-                "Proveedor oficial de phantomas Laerdal. "
-                "Mantenimiento preventivo semestral incluido en contrato."
-            ),
-        )
-        prov_medsupply = Proveedor(
-            nombre="MedSupply SpA",
-            rut="76.111.222-3",
-            contacto_nombre="Patricia Vega",
-            contacto_email="pvega@medsupply.cl",
-            telefono="+56 9 8765 4321",
-            url_seneg=None,
-            notas="Proveedor general de insumos medicos desechables.",
-        )
-        db.add(prov_laerdal)
-        db.add(prov_medsupply)
-        db.flush()
-        proveedores_map = {
-            "laerdal": prov_laerdal.id,
-            "medsupply": prov_medsupply.id,
-        }
-        print("  2 proveedores (Laerdal Chile, MedSupply SpA)")
-
-        # --- Docentes ---
-        print("Insertando docentes...")
-        docentes = []
-        for nombre, email, rut in DOCENTES_DATA:
-            d = Docente(nombre=nombre, email=email, rut=rut, activo=True)
-            db.add(d)
-            docentes.append(d)
-        db.flush()
-        print(f"  {len(docentes)} docentes (Paz Rodriguez, Michael Torres)")
-
-        # --- Asignaturas ---
-        print("Insertando asignaturas...")
-        asignaturas = []
-        for nombre, codigo, carrera in ASIGNATURAS:
-            a = Asignatura(nombre=nombre, codigo=codigo, carrera=carrera)
-            db.add(a)
-            asignaturas.append(a)
-        db.flush()
-        print(f"  {len(asignaturas)} asignaturas (5 carreras)")
-
-        # --- Clases ---
-        print("Insertando clases...")
-        clases = []
-        for doc_idx, asig_idx, seccion, semestre, num_est in CLASES_DOCENTE:
-            c = ClaseDocente(
-                docente_id=docentes[doc_idx].id,
-                asignatura_id=asignaturas[asig_idx].id,
-                seccion=seccion, semestre=semestre, num_estudiantes=num_est,
-            )
-            db.add(c)
-            clases.append(c)
-        db.flush()
-        print(f"  {len(clases)} clases (semestre 2026-1)")
-
-        # --- Insumos ---
-        print("Insertando insumos...")
-        insumos_db = []
-        for nombre, unidad_medida, stock, minimo, cat_idx, tipo, costo in INSUMOS:
-            i = Insumo(
-                nombre=nombre,
-                descripcion=unidad_medida,
-                unidad_medida=unidad_medida,
-                stock_actual=stock,
-                stock_minimo=minimo,
-                sala_id=None,
-                categoria_id=cats[cat_idx].id,
-                tipo=TipoInsumo(tipo),
-                costo_unitario=costo,
-            )
-            db.add(i)
-            insumos_db.append(i)
-        db.flush()
-        for ins in insumos_db:
-            if not ins.sku:
-                ins.sku = f"HST-{ins.id:05d}"
-        db.commit()
-        implementos_list = [
-            i for i in insumos_db if i.tipo == TipoInsumo.implemento
-        ]
-        print(f"  {len(insumos_db)} insumos ({len(implementos_list)} implementos)")
-
-        # --- Unidades fisicas de implementos ---
-        print("Insertando unidades fisicas de implementos...")
-        total_unidades = 0
-        salas_clinicas = salas[:3]
-        for impl in implementos_list:
-            prefijo = _prefijo_codigo(impl.nombre)
-            cantidad = random.randint(2, 5)
-            for j in range(cantidad):
-                estado = random.choice([
-                    EstadoUnidad.disponible, EstadoUnidad.disponible,
-                    EstadoUnidad.disponible, EstadoUnidad.en_uso,
-                ])
-                if j == 0 and impl.categoria_id == cats[0].id:
-                    sala_asignada = salas_clinicas[0].id
-                elif j == 1 and impl.categoria_id == cats[0].id:
-                    sala_asignada = salas_clinicas[1].id
-                else:
-                    sala_asignada = None
-                u = UnidadImplemento(
-                    implemento_id=impl.id,
-                    estado=estado,
-                    sala_id=sala_asignada,
-                )
-                db.add(u)
-                db.flush()
-                u.codigo = f"{prefijo}-{u.id:05d}"
-                total_unidades += 1
-        db.commit()
-        print(
-            f"  {total_unidades} unidades "
-            f"({len(implementos_list)} implementos cubiertos)"
-        )
-
-        # --- Activos Fijos ---
-        print("Insertando activos fijos...")
-        activos_db = []
-        for (nombre, desc, tipo, sala_idx,
-             fidelidad, notas, prov_key) in ACTIVOS_FIJOS_DEMO:
-            prov_id = proveedores_map.get(prov_key) if prov_key else None
-            af = ActivoFijo(
-                nombre=nombre, descripcion=desc, tipo=tipo,
-                sala_id=salas[sala_idx].id, fidelidad=fidelidad,
-                estado=EstadoActivo.disponible, notas=notas,
-                proveedor_id=prov_id,
-            )
-            db.add(af)
-            activos_db.append(af)
-            db.flush()
-            prefijo_af = "MUE" if tipo == TipoActivo.mueble else "PHN"
-            af.codigo_interno = f"{prefijo_af}-{af.id:05d}"
-        db.commit()
-        n_muebles = sum(1 for a in ACTIVOS_FIJOS_DEMO if a[2] == TipoActivo.mueble)
-        n_phantomas = len(ACTIVOS_FIJOS_DEMO) - n_muebles
-        print(
-            f"  {len(activos_db)} activos fijos "
-            f"({n_muebles} muebles, {n_phantomas} phantomas)"
-        )
-
-        # --- Orden de mantenimiento demo ---
-        # Modelo actual: OrdenMantenimiento es la cabecera de una visita.
-        # OrdenMantenimientoItem es un Phantoma dentro de esa visita.
-        # Estado: en_curso | cerrada | cancelada
-        print("Insertando orden de mantenimiento demo...")
-        simman = activos_db[3]   # SimMan 3G
-        als = activos_db[5]      # ALS Simulator neonatal
-        simman.estado = EstadoActivo.en_mantenimiento
-        als.estado = EstadoActivo.en_mantenimiento
-
-        orden_demo = OrdenMantenimiento(
-            proveedor_id=prov_laerdal.id,
-            creado_por_id=usuarios[1].id,
-            estado=EstadoOrden.en_curso,
-            fecha_visita=date.today() - timedelta(days=12),
-            notas=(
-                "Visita semestral preventiva Laerdal Chile. "
-                "SimMan con falla en modulo de sonidos respiratorios. "
-                "ALS Neonatal: revision de bateria y sensores."
-            ),
-        )
-        db.add(orden_demo)
-        db.flush()
-
-        # Items: uno por Phantoma incluido en la visita
-        db.add(OrdenMantenimientoItem(
-            orden_id=orden_demo.id,
-            activo_fijo_id=simman.id,
-            resultado=ResultadoItem.pendiente,
-            descripcion_problema=(
-                "Falla en modulo de sonidos respiratorios. "
-                "No reproduce ruidos pulmonares durante simulacion "
-                "de insuficiencia respiratoria."
-            ),
-        ))
-        db.add(OrdenMantenimientoItem(
-            orden_id=orden_demo.id,
-            activo_fijo_id=als.id,
-            resultado=ResultadoItem.pendiente,
-            descripcion_problema=(
-                "Revision preventiva de bateria y calibracion de sensores."
-            ),
-        ))
-        db.commit()
-        print(
-            f"  1 orden (2 items: SimMan 3G + ALS Neonatal, en_curso)"
-        )
-
-        # --- Movimientos ---
-        print("Insertando movimientos...")
-        total_movs = 0
-        for insumo in insumos_db:
-            en_alerta = insumo.stock_actual <= insumo.stock_minimo
-            ne = random.randint(1, 2) if en_alerta else random.randint(2, 4)
-            ns = random.randint(5, 9) if en_alerta else random.randint(3, 7)
-            rne = (40, 60) if en_alerta else (3, 50)
-            rns = (0, 25) if en_alerta else (0, 50)
-            subtipo_salida = (
-                SubtipoMovimiento.prestamo_implemento
-                if insumo.tipo == TipoInsumo.implemento
-                else SubtipoMovimiento.consumo_taller
-            )
-            for _ in range(ne):
-                db.add(Movimiento(
-                    tipo=TipoMovimiento.entrada,
-                    subtipo=SubtipoMovimiento.compra,
-                    cantidad=random.randint(30, 150),
-                    motivo=random.choice(MOTIVOS_ENTRADA),
-                    fecha=fecha_aleatoria(*rne),
-                    insumo_id=insumo.id,
-                    usuario_id=random.choice(operadores).id,
-                ))
-                total_movs += 1
-            for _ in range(ns):
-                db.add(Movimiento(
-                    tipo=TipoMovimiento.salida,
-                    subtipo=subtipo_salida,
-                    cantidad=random.randint(1, 8),
-                    motivo=random.choice(MOTIVOS_SALIDA),
-                    fecha=fecha_aleatoria(*rns),
-                    insumo_id=insumo.id,
-                    usuario_id=random.choice(usuarios).id,
-                ))
-                total_movs += 1
-        db.commit()
-        print(f"  {total_movs} movimientos (tipo + subtipo)")
-
-        # --- Talleres ---
-        print("Insertando talleres...")
-        talleres_db = []
-        for nombre, desc, asig_idx in TALLERES_DATA:
-            t = Taller(
-                nombre=nombre, descripcion=desc,
-                asignatura_id=asignaturas[asig_idx].id,
-            )
-            db.add(t)
-            talleres_db.append(t)
-        db.flush()
-        print(f"  {len(talleres_db)} talleres (5 carreras)")
-
-        # --- Paquetes de insumos ---
-        print("Insertando paquetes de insumos...")
-        total_paquetes = 0
-        for taller_idx, semestre, notas, items in PAQUETES_DATA:
-            _crear_paquete(
-                db,
-                taller_id=talleres_db[taller_idx].id,
-                semestre=semestre, notas=notas,
-                usuario_id=usuarios[1].id,
-                items=items, insumos_db=insumos_db,
-            )
-            total_paquetes += 1
-        db.commit()
-        print(f"  {total_paquetes} paquetes (5 carreras, semestre 2026-1)")
-
-        # --- Resumen final ---
         alertas = sum(1 for _, _, s, m, *_ in INSUMOS if s <= m)
         print("\n" + "=" * 40)
         print("Demo cargada exitosamente.")
         print(f"  Salas:             {len(salas)}")
         print(f"  Categorias:        {len(cats)}")
         print(f"  Usuarios:          {len(usuarios)}")
-        print(f"  Proveedores:       2 (Laerdal Chile, MedSupply SpA)")
-        print(f"  Docentes:          {len(docentes)} (Paz Rodriguez, Michael Torres)")
-        print(f"  Asignaturas:       {len(asignaturas)} (5 carreras)")
+        print("  Proveedores:       2 (Laerdal Chile, MedSupply SpA)")
+        print(f"  Docentes:          {len(docentes_por_nombre)} (Paz Rodriguez, Michael Torres)")
+        print(f"  Asignaturas:       {len(asignaturas_por_codigo)} (5 carreras)")
         print(f"  Clases:            {len(clases)}")
         print(
             f"  Insumos:           {len(insumos_db)} "
