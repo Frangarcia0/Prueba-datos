@@ -17,6 +17,10 @@ Genera:
     - 2 proveedores: Laerdal Chile y MedSupply SpA
     - 1 orden de mantenimiento demo (SimMan 3G en_curso con Laerdal)
     - 10 talleres + 10 paquetes de insumos
+    - 10 programaciones de taller (semestre 2026-1)
+    - 10 revisiones de sala (8 completadas, 2 en_revision), 32 items
+    - 3 incidencias en activos fijos
+    - 3 ordenes de entrada (1 cerrada, 1 confirmada, 1 borrador), 9 items
 
 Credenciales:
     admin@hestia.duoc.cl          / Admin2024!
@@ -67,8 +71,14 @@ from app.models.orden_mantenimiento import (
 # limpieza pueda borrarlos en el orden FK correcto.
 from app.models.programacion_taller import ProgramacionTaller
 from app.models.revision_sala import RevisionSala, RevisionSalaItem
-from app.models.incidencia import Incidencia
-from app.models.orden_entrada import OrdenEntrada, OrdenEntradaItem
+from app.models.incidencia import (
+    Incidencia, TipoIncidencia, SeveridadIncidencia, EstadoIncidencia,
+)
+from app.models.orden_entrada import (
+    OrdenEntrada, OrdenEntradaItem,
+    TipoOrden, EstadoOrden as EstadoOrdenEntrada,
+    EstadoItem as EstadoItemOrden, TipoItemOrden,
+)
 from app.utils.security import hashear_password
 
 try:
@@ -394,6 +404,166 @@ PAQUETES_DATA = [
      [(0, 18, None), (4, 18, None),
       (31, 8, None), (32, 8, None), (33, 8, None),
       (39, 8, None)]),
+]
+
+
+# Formato: (taller_nombre, sala_nombre, fecha, hora_inicio, hora_fin,
+#            docente_nombre, seccion, semestre, notas)
+# taller_nombre referencia TALLERES_DATA por nombre unico.
+# sala_nombre referencia SALAS por nombre unico.
+PROGRAMACIONES_DATA = [
+    ("Taller de venopuncion",
+     "Sala 010", date(2026, 3, 12), "08:00", "10:30",
+     "Paz Rodriguez",  "001D", "2026-1", None),
+    ("Taller de sutura basica",
+     "Sala 011", date(2026, 3, 26), "08:00", "10:30",
+     "Paz Rodriguez",  "001D", "2026-1", None),
+    ("Taller de RCP avanzado",
+     "Sala 010", date(2026, 4,  9), "08:00", "11:00",
+     "Michael Torres", "001D", "2026-1", "Requiere SimMan 3G operativo"),
+    ("Taller de cuidados al recien nacido",
+     "Sala 016", date(2026, 4, 23), "09:00", "11:30",
+     None, "001D", "2026-1", "Usar ALS Simulator neonatal"),
+    ("Taller de bioseguridad y EPP",
+     "Sala 012", date(2026, 5,  7), "08:00", "09:30",
+     None, "001D", "2026-1", None),
+    ("Taller de quimica analitica",
+     "Sala 013", date(2026, 5, 14), "10:00", "12:00",
+     "Paz Rodriguez",  "001D", "2026-1", None),
+    ("Taller de toma de muestra",
+     "Sala 011", date(2026, 5, 21), "08:00", "10:00",
+     None, "001D", "2026-1", None),
+    ("Taller de bioseguridad de laboratorio",
+     "Sala 012", date(2026, 5, 28), "08:00", "09:30",
+     None, "001D", "2026-1", None),
+    ("Taller de primeros auxilios odontologicos",
+     "Sala 07 - Odontologia", date(2026, 6,  4), "09:00", "11:00",
+     None, "001D", "2026-1", None),
+    ("Taller de evaluacion de condicion fisica",
+     "Sala 015", date(2026, 6, 11), "08:00", "10:00",
+     None, "001D", "2026-1", None),
+]
+
+# Formato: (taller_nombre, estado, hora_inicio_rev, hora_fin_rev, notas, items)
+# taller_nombre referencia PROGRAMACIONES_DATA por nombre unico (clave simbolica).
+# items: [(tipo, nombre, cantidad_esperada, cantidad_encontrada, conforme, notas_item)]
+# tipo: 'insumo' | 'implemento' | 'activo_fijo'
+REVISIONES_SALA_DATA = [
+    ("Taller de venopuncion", "completada", "10:35", "10:55", None, [
+        ("insumo",     "Guantes de latex talla M",          30, 28, True,  None),
+        ("insumo",     "Cateter venoso periferico 20G",     10,  9, True,  None),
+        ("implemento", "Esfigmomanometro aneroide",          2,  2, True,  None),
+        ("implemento", "Torniquete venoso",                  5,  5, True,  None),
+    ]),
+    ("Taller de sutura basica", "completada", "10:35", "11:00", None, [
+        ("insumo",     "Gasa esteril 10x10 cm",            20, 18, True,  None),
+        ("insumo",  "Seda 2-0 con aguja triangular", 15, 13, True, "2 sobres con empaque danado"),
+        ("implemento", "Pinza Adson con dientes",        4,  4, True,  None),
+        ("implemento", "Porta aguja Hegar",              4,  3, False, "Una unidad no devuelta"),
+    ]),
+    ("Taller de RCP avanzado", "completada", "11:05", "11:25", None, [
+        ("insumo",      "Mascarillas quirurgicas",        20, 20, True, None),
+        ("implemento",  "Bolsa autoinflable AMBU adulto", 3,  3, True, None),
+        ("activo_fijo", "SimMan 3G",              None, None, True, "Falla en modulo de sonidos"),
+        ("activo_fijo", "Camilla articulada con barandas", None, None, True, None),
+    ]),
+    ("Taller de cuidados al recien nacido", "completada", "11:35", "11:55", None, [
+        ("insumo",      "Guantes de latex talla S",      25, 24, True, None),
+        ("insumo",      "Aposito adhesivo 10x8 cm",      15, 15, True, None),
+        ("activo_fijo", "ALS Simulator neonatal",
+         None, None, False, "Bateria baja, enviado a mantenimiento"),
+    ]),
+    ("Taller de bioseguridad y EPP", "completada", "09:35", "09:50", None, [
+        ("insumo",     "Guantes nitrilo sin polvo talla M", 25, 25, True, None),
+        ("insumo",     "Mascarillas N95 FFP2",              25, 24, True, None),
+        ("implemento", "Gafas de proteccion",        25, 23, True, "2 unidades con vidrio rayado"),
+        ("implemento", "Careta de proteccion facial",       10, 10, True,  None),
+    ]),
+    ("Taller de quimica analitica", "completada", "12:05", "12:20", None, [
+        ("insumo",     "Alcohol isopropilico 70% 1000ml",    5,  5, True,  None),
+        ("insumo",     "Clorhexidina gluconato 4% 500ml",    5,  4, True,  "Un frasco incompleto"),
+        ("implemento", "Gafas de proteccion",               20, 20, True,  None),
+    ]),
+    ("Taller de toma de muestra", "completada", "10:05", "10:20", None, [
+        ("insumo",     "Aguja hipodermica 21G x 1.5",       80, 80, True,  None),
+        ("insumo",     "Lancetas descartables x100",         10, 10, True,  None),
+        ("implemento", "Torniquete venoso",                   8,  7, True,  "Una unidad en lavado"),
+    ]),
+    ("Taller de bioseguridad de laboratorio", "completada", "09:35", "09:50", None, [
+        ("insumo",     "Bolsa roja residuos peligrosos 60L",  5,  5, True, None),
+        ("insumo",     "Contenedor biohazard 30L",             3,  3, True, None),
+        ("implemento", "Gafas de proteccion",                 25, 24, True, None),
+    ]),
+    ("Taller de primeros auxilios odontologicos", "en_revision", "11:05", None, None, [
+        ("insumo",     "Gasa esteril 10x10 cm",             10, None, None, None),
+        ("implemento", "Esfigmomanometro aneroide",           5, None, None, None),
+    ]),
+    ("Taller de evaluacion de condicion fisica", "en_revision", "10:05", None, None, [
+        ("insumo",     "Guantes de latex talla M",           18, None, None, None),
+        ("implemento", "Cinta metrica flexible",              8,  None, None, None),
+    ]),
+]
+
+# Formato: (activo_nombre, tipo, descripcion, sala_nombre, fecha_hora,
+#            responsable_nombre, severidad, estado)
+# activo_nombre referencia ACTIVOS_FIJOS_DEMO por nombre unico.
+# sala_nombre referencia SALAS por nombre unico.
+INCIDENCIAS_DATA = [
+    ("SimMan 3G",
+     TipoIncidencia.mal_funcionamiento,
+     "Modulo de sonidos respiratorios sin respuesta durante simulacion de "
+     "insuficiencia respiratoria. No reproduce ruidos pulmonares ni cardiacos.",
+     "Sala 010",
+     datetime(2026, 4, 9, 11, 20, tzinfo=timezone.utc),
+     "Michael Torres",
+     SeveridadIncidencia.moderada,
+     EstadoIncidencia.en_revision),
+    ("ALS Simulator neonatal",
+     TipoIncidencia.mal_funcionamiento,
+     "Bateria principal con descarga completa durante taller. "
+     "Equipo se apago a los 40 minutos de uso.",
+     "Sala 016",
+     datetime(2026, 4, 23, 11, 10, tzinfo=timezone.utc),
+     None,
+     SeveridadIncidencia.critica,
+     EstadoIncidencia.abierta),
+    ("Nursing Anne",
+     TipoIncidencia.pieza_perdida,
+     "Brazalete de identificacion y capucha de simulacion no encontrados "
+     "al cierre de sala. Posiblemente extraviados durante limpieza.",
+     "Sala 011",
+     datetime(2026, 3, 26, 11, 5, tzinfo=timezone.utc),
+     "Paz Rodriguez",
+     SeveridadIncidencia.leve,
+     EstadoIncidencia.resuelta),
+]
+
+# Formato: (proveedor_key, tipo, estado, actividad_duoc, notas, items)
+# proveedor_key referencia proveedores_map; None = sin proveedor asignado.
+# items: [(insumo_nombre, cantidad_pedida, cantidad_recibida, costo_unitario, estado_item)]
+# insumo_nombre referencia INSUMOS por nombre unico.
+ORDENES_ENTRADA_DATA = [
+    ("medsupply", TipoOrden.semanal, EstadoOrdenEntrada.cerrada,
+     "1010", "Reposicion semanal de insumos de alta rotacion - sem 15",
+     [
+         ("Guantes de latex talla M",        200, 200, 3500, EstadoItemOrden.recibido),
+         ("Mascarillas quirurgicas",          100, 100, 4000, EstadoItemOrden.recibido),
+         ("Gasa esteril 10x10 cm",           200, 180,  650, EstadoItemOrden.recibido_parcial),
+         ("Jeringa 10ml con aguja 21G",        50,  50,  380, EstadoItemOrden.recibido),
+     ]),
+    ("laerdal", TipoOrden.semestral, EstadoOrdenEntrada.confirmada,
+     "1060", "Repuestos y accesorios anuales para phantomas Laerdal",
+     [
+         ("Resucitador AMBU con mascarilla",   2, None, 110000, EstadoItemOrden.pendiente),
+         ("Bolsa autoinflable AMBU adulto",     2, None,  95000, EstadoItemOrden.pendiente),
+     ]),
+    ("medsupply", TipoOrden.emergencia, EstadoOrdenEntrada.borrador,
+     "1137", "Reposicion urgente de sueros - stock critico",
+     [
+         ("Suero fisiologico NaCl 0.9% 1L",   20, None, 3500, EstadoItemOrden.pendiente),
+         ("Suero fisiologico 0.9% 250ml",      30, None, 1800, EstadoItemOrden.pendiente),
+         ("Solucion Ringer Lactato 1L",        15, None, 3200, EstadoItemOrden.pendiente),
+     ]),
 ]
 
 
@@ -807,6 +977,125 @@ def _insertar_paquetes(db, talleres_por_nombre, insumos_db, operadores) -> int:
     return total_paquetes
 
 
+def _insertar_programaciones(db, talleres_por_nombre, salas_por_nombre) -> dict:
+    print("Insertando programaciones de talleres...")
+    programaciones_por_nombre = {}
+    for (taller_nombre, sala_nombre, fecha, hora_inicio, hora_fin,
+         docente_nombre, seccion, semestre, notas) in PROGRAMACIONES_DATA:
+        p = ProgramacionTaller(
+            taller_id=talleres_por_nombre[taller_nombre].id,
+            sala_id=salas_por_nombre[sala_nombre].id,
+            fecha=fecha,
+            hora_inicio=hora_inicio,
+            hora_fin=hora_fin,
+            docente_nombre=docente_nombre,
+            seccion=seccion,
+            semestre=semestre,
+            notas=notas,
+        )
+        db.add(p)
+        programaciones_por_nombre[taller_nombre] = p
+    db.flush()
+    print(f"  {len(programaciones_por_nombre)} programaciones (semestre 2026-1)")
+    return programaciones_por_nombre
+
+
+def _insertar_revisiones_sala(
+    db, programaciones_por_nombre, salas_por_nombre, operadores
+) -> int:
+    print("Insertando revisiones de sala...")
+    total_revisiones = 0
+    total_items = 0
+    for (taller_nombre, estado, hora_inicio_rev, hora_fin_rev,
+         notas, items) in REVISIONES_SALA_DATA:
+        prog = programaciones_por_nombre[taller_nombre]
+        rev = RevisionSala(
+            programacion_id=prog.id,
+            sala_id=prog.sala_id,
+            fecha=prog.fecha,
+            operador_id=random.choice(operadores).id,
+            estado=estado,
+            hora_inicio_rev=hora_inicio_rev,
+            hora_fin_rev=hora_fin_rev,
+            notas=notas,
+        )
+        db.add(rev)
+        db.flush()
+        for (tipo, nombre, cant_esp, cant_enc, conforme, notas_item) in items:
+            db.add(RevisionSalaItem(
+                revision_id=rev.id,
+                tipo=tipo,
+                nombre=nombre,
+                cantidad_esperada=cant_esp,
+                cantidad_encontrada=cant_enc,
+                conforme=conforme,
+                notas_item=notas_item,
+            ))
+            total_items += 1
+        total_revisiones += 1
+    db.commit()
+    print(f"  {total_revisiones} revisiones, {total_items} items")
+    return total_revisiones
+
+
+def _insertar_incidencias(db, activos_por_nombre, salas_por_nombre, usuarios) -> int:
+    print("Insertando incidencias...")
+    for (activo_nombre, tipo, descripcion, sala_nombre,
+         fecha_hora, responsable_nombre, severidad, estado) in INCIDENCIAS_DATA:
+        db.add(Incidencia(
+            activo_fijo_id=activos_por_nombre[activo_nombre].id,
+            tipo=tipo,
+            descripcion=descripcion,
+            sala_id=salas_por_nombre[sala_nombre].id,
+            fecha_hora=fecha_hora,
+            responsable_nombre=responsable_nombre,
+            severidad=severidad,
+            estado=estado,
+        ))
+    db.commit()
+    print(f"  {len(INCIDENCIAS_DATA)} incidencias")
+    return len(INCIDENCIAS_DATA)
+
+
+def _insertar_ordenes_entrada(
+    db, proveedores_map, insumos_db, usuarios, operadores
+) -> int:
+    print("Insertando ordenes de entrada...")
+    insumos_por_nombre = {i.nombre: i for i in insumos_db}
+    total_ordenes = 0
+    for (prov_key, tipo, estado, actividad_duoc,
+         notas, items) in ORDENES_ENTRADA_DATA:
+        prov_id = proveedores_map.get(prov_key) if prov_key else None
+        cerrado_por_id = operadores[0].id if estado == EstadoOrdenEntrada.cerrada else None
+        orden = OrdenEntrada(
+            proveedor_id=prov_id,
+            tipo=tipo,
+            estado=estado,
+            actividad_duoc=actividad_duoc,
+            notas=notas,
+            creado_por_id=operadores[0].id,
+            cerrado_por_id=cerrado_por_id,
+        )
+        db.add(orden)
+        db.flush()
+        for (insumo_nombre, cant_pedida, cant_recibida,
+             costo_unitario, estado_item) in items:
+            db.add(OrdenEntradaItem(
+                orden_id=orden.id,
+                tipo_item=TipoItemOrden.insumo,
+                insumo_id=insumos_por_nombre[insumo_nombre].id,
+                cantidad_pedida=cant_pedida,
+                cantidad_recibida=cant_recibida,
+                costo_unitario=costo_unitario,
+                estado=estado_item,
+            ))
+        total_ordenes += 1
+    total_items_entrada = sum(len(its) for *_, its in ORDENES_ENTRADA_DATA)
+    db.commit()
+    print(f"  {total_ordenes} ordenes ({total_items_entrada} items)")
+    return total_ordenes
+
+
 # ===========================================================================
 # Punto de entrada
 # ===========================================================================
@@ -843,6 +1132,18 @@ def main():
         total_movs     = _insertar_movimientos(db, insumos_db, usuarios, operadores)
         talleres_por_nombre = _insertar_talleres(db, asignaturas_por_codigo)
         total_paquetes = _insertar_paquetes(db, talleres_por_nombre, insumos_db, operadores)
+        programaciones_por_nombre = _insertar_programaciones(
+            db, talleres_por_nombre, salas_por_nombre,
+        )
+        total_revisiones = _insertar_revisiones_sala(
+            db, programaciones_por_nombre, salas_por_nombre, operadores,
+        )
+        total_incidencias = _insertar_incidencias(
+            db, activos_por_nombre, salas_por_nombre, usuarios,
+        )
+        total_ordenes_entrada = _insertar_ordenes_entrada(
+            db, proveedores_map, insumos_db, usuarios, operadores,
+        )
 
         alertas = sum(1 for _, _, s, m, *_ in INSUMOS if s <= m)
         print("\n" + "=" * 40)
@@ -870,6 +1171,10 @@ def main():
         print(f"  Movimientos:       {total_movs} (tipo + subtipo)")
         print(f"  Talleres:          {len(talleres_por_nombre)}")
         print(f"  Paquetes:          {total_paquetes}")
+        print(f"  Programaciones:    {len(programaciones_por_nombre)}")
+        print(f"  Revisiones sala:   {total_revisiones}")
+        print(f"  Incidencias:       {total_incidencias}")
+        print(f"  Ordenes entrada:   {total_ordenes_entrada}")
         print("\nCredenciales:")
         for _, email, pwd, rol in USUARIOS:
             print(f"  {email:38} | {pwd:12} | {rol.value}")
