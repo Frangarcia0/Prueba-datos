@@ -167,6 +167,7 @@ CLASES_DOCENTE = [
 ]
 
 # Formato: (nombre, unidad_medida, stock, minimo, cat_idx, tipo, costo)
+# cat_idx referencia CATEGORIAS por posicion (restriccion: constante no modificable).
 INSUMOS = [
     # EPP (cat 0)
     ("Guantes de latex talla S", "Caja x100 unidades", 150, 50, 0, IN, 3200),
@@ -266,30 +267,31 @@ INSUMOS = [
     ("Gasas con clorhexidina CHG", "Sobre", 40, 15, 9, IN, 1200),
 ]
 
-# Formato: (nombre, descripcion, tipo, sala_idx, fidelidad, notas, proveedor_key)
+# Formato: (nombre, descripcion, tipo, sala_nombre, fidelidad, notas, proveedor_key)
+# sala_nombre referencia SALAS por nombre unico.
 ACTIVOS_FIJOS_DEMO = [
     ("Camilla articulada con barandas",
      "Camilla electrica 3 secciones, barandas abatibles",
-     TipoActivo.mueble, 0, None,
+     TipoActivo.mueble, "Sala 010", None,
      "Revision anual programada marzo 2027", "medsupply"),
     ("Carro de paro de emergencia",
      "Carro equipado con desfibrilador y medicamentos de emergencia",
-     TipoActivo.mueble, 3, None,
+     TipoActivo.mueble, "Sala 013", None,
      "Revision mensual de contenido obligatoria", "medsupply"),
     ("Mesa de procedimientos Mayo",
      "Mesa auxiliar acero inoxidable con ruedas",
-     TipoActivo.mueble, 2, None, None, None),
+     TipoActivo.mueble, "Sala 012", None, None, None),
     ("SimMan 3G",
      "Maniqui de alta fidelidad adulto Laerdal",
-     TipoActivo.phantoma, 0, FidelidadPhantoma.alta,
+     TipoActivo.phantoma, "Sala 010", FidelidadPhantoma.alta,
      "Mantenimiento preventivo semestral por Laerdal Chile", "laerdal"),
     ("Nursing Anne",
      "Maniqui para entrenamiento de enfermeria Laerdal",
-     TipoActivo.phantoma, 1, FidelidadPhantoma.media,
+     TipoActivo.phantoma, "Sala 011", FidelidadPhantoma.media,
      None, "laerdal"),
     ("ALS Simulator neonatal",
      "Maniqui neonatal de soporte vital avanzado",
-     TipoActivo.phantoma, 6, FidelidadPhantoma.alta,
+     TipoActivo.phantoma, "Sala 016", FidelidadPhantoma.alta,
      "Solo para clase de Obstetricia y Ginecologia", "laerdal"),
 ]
 
@@ -339,51 +341,55 @@ TALLERES_DATA = [
      "Medicion de parametros antropometricos y test de capacidad fisica", "EAS1102"),
 ]
 
+# Formato: (taller_nombre, semestre, notas, items)
+# taller_nombre referencia TALLERES_DATA por nombre unico.
+# items: [(insumo_idx, cantidad, nota), ...] — insumo_idx referencia INSUMOS
+#        por posicion (restriccion: constante no modificable).
 PAQUETES_DATA = [
-    (0, "2026-1",
+    ("Taller de venopuncion", "2026-1",
      "Para 30 alumnos. Verificar stock de catetes 20G antes del semestre.",
      [(0, 30, "Talla S/M segun alumno"), (1, 30, None), (4, 30, None),
       (40, 5, None), (41, 10, None), (49, 15, None),
       (51, 5, "Torniquete"), (11, 30, None)]),
-    (1, "2026-1",
+    ("Taller de sutura basica", "2026-1",
      "Incluye set de instrumental de sutura por pareja de alumnos.",
      [(0, 20, None), (1, 20, None), (22, 15, None), (23, 10, None),
       (24, 8, None), (27, 4, "Una pinza por pareja"),
       (28, 4, "Una tijera por pareja"), (29, 4, None), (11, 20, None)]),
-    (2, "2026-1",
+    ("Taller de RCP avanzado", "2026-1",
      "Usar SimMan 3G y Nursing Anne. Verificar AMBU antes de la clase.",
      [(0, 20, None), (1, 20, None), (4, 20, None),
       (57, 4, None), (59, 4, None), (62, 2, None),
       (63, 2, None), (64, 2, None)]),
-    (3, "2026-1",
+    ("Taller de cuidados al recien nacido", "2026-1",
      "Requiere simulador neonatal. Coordinar con Maritza.",
      [(0, 25, "Talla S/XS"), (4, 25, None), (11, 20, None),
       (13, 15, None), (33, 5, None), (32, 5, None)]),
-    (4, "2026-1",
+    ("Taller de bioseguridad y EPP", "2026-1",
      "EPP completo por alumno. Verificar stock de mascarillas N95.",
      [(0, 25, None), (1, 25, None), (4, 25, None), (5, 25, None),
       (6, 25, None), (7, 25, None), (8, 25, None)]),
-    (5, "2026-1",
+    ("Taller de quimica analitica", "2026-1",
      "Insumos de higiene y seguridad para laboratorio quimico.",
      [(0, 20, None), (1, 20, None), (4, 20, None),
       (78, 5, "Frasco 1L"), (79, 5, None), (84, 4, None),
       (85, 4, None), (65, 10, None), (66, 10, None)]),
-    (6, "2026-1",
+    ("Taller de toma de muestra", "2026-1",
      "Tecnicas de flebotomia. Cada alumno usa su propio kit de puncion.",
      [(0, 28, None), (1, 28, None), (4, 28, None),
       (41, 10, None), (49, 15, None), (51, 8, None),
       (52, 80, None), (53, 80, None), (55, 10, None)]),
-    (7, "2026-1",
+    ("Taller de bioseguridad de laboratorio", "2026-1",
      "Manejo correcto de residuos biologicos y EPP de laboratorio.",
      [(0, 25, None), (4, 25, None), (6, 10, None),
       (65, 5, None), (66, 5, None), (67, 10, None),
       (68, 6, None), (83, 8, None)]),
-    (8, "2026-1",
+    ("Taller de primeros auxilios odontologicos", "2026-1",
      "Protocolo de emergencias en clinica dental.",
      [(0, 20, None), (4, 20, None), (11, 10, None),
       (30, 5, None), (31, 5, None), (33, 5, None),
       (70, 3, None), (71, 3, None)]),
-    (9, "2026-1",
+    ("Taller de evaluacion de condicion fisica", "2026-1",
      "Test de capacidad fisica y mediciones antropometricas.",
      [(0, 18, None), (4, 18, None),
       (31, 8, None), (32, 8, None), (33, 8, None),
@@ -477,16 +483,16 @@ def _limpiar(db) -> None:
     print("  OK")
 
 
-def _insertar_salas(db) -> list:
+def _insertar_salas(db) -> dict:
     print("Insertando salas...")
-    salas = []
+    salas_por_nombre = {}
     for nombre, tipo, desc in SALAS:
         s = Sala(nombre=nombre, tipo=tipo, descripcion=desc)
         db.add(s)
-        salas.append(s)
+        salas_por_nombre[nombre] = s
     db.flush()
-    print(f"  {len(salas)} salas")
-    return salas
+    print(f"  {len(salas_por_nombre)} salas")
+    return salas_por_nombre
 
 
 def _insertar_categorias(db) -> list:
@@ -614,10 +620,17 @@ def _insertar_insumos(db, cats) -> list:
     return insumos_db
 
 
-def _insertar_unidades_implemento(db, implementos_list, salas, cats) -> int:
+def _insertar_unidades_implemento(
+    db, implementos_list, salas_por_nombre, cats_por_nombre
+) -> int:
     print("Insertando unidades fisicas de implementos...")
     total_unidades = 0
-    salas_clinicas = salas[:3]
+    salas_clinicas = [
+        salas_por_nombre["Sala 010"],
+        salas_por_nombre["Sala 011"],
+        salas_por_nombre["Sala 012"],
+    ]
+    cat_epp_id = cats_por_nombre["Proteccion Personal (EPP)"].id
     for impl in implementos_list:
         prefijo = _prefijo_codigo(impl.nombre)
         cantidad = random.randint(2, 5)
@@ -626,9 +639,9 @@ def _insertar_unidades_implemento(db, implementos_list, salas, cats) -> int:
                 EstadoUnidad.disponible, EstadoUnidad.disponible,
                 EstadoUnidad.disponible, EstadoUnidad.en_uso,
             ])
-            if j == 0 and impl.categoria_id == cats[0].id:
+            if j == 0 and impl.categoria_id == cat_epp_id:
                 sala_asignada = salas_clinicas[0].id
-            elif j == 1 and impl.categoria_id == cats[0].id:
+            elif j == 1 and impl.categoria_id == cat_epp_id:
                 sala_asignada = salas_clinicas[1].id
             else:
                 sala_asignada = None
@@ -649,20 +662,20 @@ def _insertar_unidades_implemento(db, implementos_list, salas, cats) -> int:
     return total_unidades
 
 
-def _insertar_activos_fijos(db, salas, proveedores_map) -> tuple:
+def _insertar_activos_fijos(db, salas_por_nombre, proveedores_map) -> tuple:
     print("Insertando activos fijos...")
-    activos_db = []
-    for (nombre, desc, tipo, sala_idx,
+    activos_por_nombre = {}
+    for (nombre, desc, tipo, sala_nombre,
          fidelidad, notas, prov_key) in ACTIVOS_FIJOS_DEMO:
         prov_id = proveedores_map.get(prov_key) if prov_key else None
         af = ActivoFijo(
             nombre=nombre, descripcion=desc, tipo=tipo,
-            sala_id=salas[sala_idx].id, fidelidad=fidelidad,
+            sala_id=salas_por_nombre[sala_nombre].id, fidelidad=fidelidad,
             estado=EstadoActivo.disponible, notas=notas,
             proveedor_id=prov_id,
         )
         db.add(af)
-        activos_db.append(af)
+        activos_por_nombre[nombre] = af
         db.flush()
         prefijo_af = "MUE" if tipo == TipoActivo.mueble else "PHN"
         af.codigo_interno = f"{prefijo_af}-{af.id:05d}"
@@ -670,22 +683,24 @@ def _insertar_activos_fijos(db, salas, proveedores_map) -> tuple:
     n_muebles = sum(1 for a in ACTIVOS_FIJOS_DEMO if a[2] == TipoActivo.mueble)
     n_phantomas = len(ACTIVOS_FIJOS_DEMO) - n_muebles
     print(
-        f"  {len(activos_db)} activos fijos "
+        f"  {len(activos_por_nombre)} activos fijos "
         f"({n_muebles} muebles, {n_phantomas} phantomas)"
     )
-    return activos_db, n_muebles, n_phantomas
+    return activos_por_nombre, n_muebles, n_phantomas
 
 
-def _insertar_orden_mantenimiento(db, activos_db, proveedores_map, usuarios) -> None:
+def _insertar_orden_mantenimiento(
+    db, activos_por_nombre, proveedores_map, operadores
+) -> None:
     print("Insertando orden de mantenimiento demo...")
-    simman = activos_db[3]   # SimMan 3G
-    als = activos_db[5]      # ALS Simulator neonatal
+    simman = activos_por_nombre["SimMan 3G"]
+    als    = activos_por_nombre["ALS Simulator neonatal"]
     simman.estado = EstadoActivo.en_mantenimiento
-    als.estado = EstadoActivo.en_mantenimiento
+    als.estado    = EstadoActivo.en_mantenimiento
 
     orden_demo = OrdenMantenimiento(
         proveedor_id=proveedores_map["laerdal"],
-        creado_por_id=usuarios[1].id,
+        creado_por_id=operadores[0].id,
         estado=EstadoOrden.en_curso,
         fecha_visita=date.today() - timedelta(days=12),
         notas=(
@@ -760,30 +775,30 @@ def _insertar_movimientos(db, insumos_db, usuarios, operadores) -> int:
     return total_movs
 
 
-def _insertar_talleres(db, asignaturas_por_codigo) -> list:
+def _insertar_talleres(db, asignaturas_por_codigo) -> dict:
     print("Insertando talleres...")
-    talleres_db = []
+    talleres_por_nombre = {}
     for nombre, desc, asig_codigo in TALLERES_DATA:
         t = Taller(
             nombre=nombre, descripcion=desc,
             asignatura_id=asignaturas_por_codigo[asig_codigo].id,
         )
         db.add(t)
-        talleres_db.append(t)
+        talleres_por_nombre[nombre] = t
     db.flush()
-    print(f"  {len(talleres_db)} talleres (5 carreras)")
-    return talleres_db
+    print(f"  {len(talleres_por_nombre)} talleres (5 carreras)")
+    return talleres_por_nombre
 
 
-def _insertar_paquetes(db, talleres_db, insumos_db, usuarios) -> int:
+def _insertar_paquetes(db, talleres_por_nombre, insumos_db, operadores) -> int:
     print("Insertando paquetes de insumos...")
     total_paquetes = 0
-    for taller_idx, semestre, notas, items in PAQUETES_DATA:
+    for taller_nombre, semestre, notas, items in PAQUETES_DATA:
         _crear_paquete(
             db,
-            taller_id=talleres_db[taller_idx].id,
+            taller_id=talleres_por_nombre[taller_nombre].id,
             semestre=semestre, notas=notas,
-            usuario_id=usuarios[1].id,
+            usuario_id=operadores[0].id,
             items=items, insumos_db=insumos_db,
         )
         total_paquetes += 1
@@ -808,26 +823,31 @@ def main():
             return
 
         _limpiar(db)
-        salas                = _insertar_salas(db)
+        salas_por_nombre     = _insertar_salas(db)
         cats                 = _insertar_categorias(db)
+        cats_por_nombre      = {c.nombre: c for c in cats}
         usuarios, operadores = _insertar_usuarios(db)
         proveedores_map      = _insertar_proveedores(db)
         docentes_por_nombre  = _insertar_docentes(db)
         asignaturas_por_codigo = _insertar_asignaturas(db)
-        clases = _insertar_clases(db, docentes_por_nombre, asignaturas_por_codigo)
+        clases     = _insertar_clases(db, docentes_por_nombre, asignaturas_por_codigo)
         insumos_db = _insertar_insumos(db, cats)
         implementos_list = [i for i in insumos_db if i.tipo == TipoInsumo.implemento]
-        total_unidades = _insertar_unidades_implemento(db, implementos_list, salas, cats)
-        activos_db, n_muebles, n_phantomas = _insertar_activos_fijos(db, salas, proveedores_map)
-        _insertar_orden_mantenimiento(db, activos_db, proveedores_map, usuarios)
+        total_unidades = _insertar_unidades_implemento(
+            db, implementos_list, salas_por_nombre, cats_por_nombre,
+        )
+        activos_por_nombre, n_muebles, n_phantomas = _insertar_activos_fijos(
+            db, salas_por_nombre, proveedores_map,
+        )
+        _insertar_orden_mantenimiento(db, activos_por_nombre, proveedores_map, operadores)
         total_movs     = _insertar_movimientos(db, insumos_db, usuarios, operadores)
-        talleres_db    = _insertar_talleres(db, asignaturas_por_codigo)
-        total_paquetes = _insertar_paquetes(db, talleres_db, insumos_db, usuarios)
+        talleres_por_nombre = _insertar_talleres(db, asignaturas_por_codigo)
+        total_paquetes = _insertar_paquetes(db, talleres_por_nombre, insumos_db, operadores)
 
         alertas = sum(1 for _, _, s, m, *_ in INSUMOS if s <= m)
         print("\n" + "=" * 40)
         print("Demo cargada exitosamente.")
-        print(f"  Salas:             {len(salas)}")
+        print(f"  Salas:             {len(salas_por_nombre)}")
         print(f"  Categorias:        {len(cats)}")
         print(f"  Usuarios:          {len(usuarios)}")
         print("  Proveedores:       2 (Laerdal Chile, MedSupply SpA)")
@@ -843,12 +863,12 @@ def main():
             f"con {total_unidades} unidades fisicas"
         )
         print(
-            f"  Activos fijos:     {len(activos_db)} "
+            f"  Activos fijos:     {len(activos_por_nombre)} "
             f"({n_muebles} muebles, {n_phantomas} phantomas)"
         )
         print("  Ordenes mant.:     1 (SimMan 3G + ALS Neonatal, en_curso)")
         print(f"  Movimientos:       {total_movs} (tipo + subtipo)")
-        print(f"  Talleres:          {len(talleres_db)}")
+        print(f"  Talleres:          {len(talleres_por_nombre)}")
         print(f"  Paquetes:          {total_paquetes}")
         print("\nCredenciales:")
         for _, email, pwd, rol in USUARIOS:
