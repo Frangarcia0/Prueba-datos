@@ -423,57 +423,108 @@ TALLERES_DATA = [
 
 # Formato: (taller_nombre, semestre, notas, items)
 # taller_nombre referencia TALLERES_DATA por nombre unico.
-# items: [(insumo_idx, cantidad, nota), ...] — insumo_idx referencia INSUMOS
-#        por posicion (restriccion: constante no modificable).
+# items: [(insumo_nombre, cantidad, nota), ...] — insumo_nombre referencia
+#        INSUMOS por nombre unico.
 PAQUETES_DATA = [
     ("Taller de venopuncion", "2026-1",
      "Para 30 alumnos. Verificar stock de catetes 20G antes del semestre.",
-     [(0, 30, "Talla S/M segun alumno"), (1, 30, None), (4, 30, None),
-      (40, 5, None), (41, 10, None), (49, 15, None),
-      (51, 5, "Torniquete"), (11, 30, None)]),
+     [("Guantes de latex talla S",          30, "Talla S/M segun alumno"),
+      ("Guantes de latex talla M",          30, None),
+      ("Mascarillas quirurgicas",           30, None),
+      ("Cateter venoso periferico 18G",      5, None),
+      ("Cateter venoso periferico 20G",     10, None),
+      ("Jeringa 10ml con aguja 21G",        15, None),
+      ("Torniquete venoso",                  5, "Torniquete"),
+      ("Gasa esteril 10x10 cm",            30, None)]),
     ("Taller de sutura basica", "2026-1",
      "Incluye set de instrumental de sutura por pareja de alumnos.",
-     [(0, 20, None), (1, 20, None), (22, 15, None), (23, 10, None),
-      (24, 8, None), (27, 4, "Una pinza por pareja"),
-      (28, 4, "Una tijera por pareja"), (29, 4, None), (11, 20, None)]),
+     [("Guantes de latex talla S",          20, None),
+      ("Guantes de latex talla M",          20, None),
+      ("Seda 2-0 con aguja triangular",     15, None),
+      ("Nylon 3-0 con aguja",               10, None),
+      ("Poliglactina 2-0 Vicryl",            8, None),
+      ("Pinza Adson con dientes",            4, "Una pinza por pareja"),
+      ("Tijera de Mayo recta",               4, "Una tijera por pareja"),
+      ("Porta aguja Hegar",                  4, None),
+      ("Gasa esteril 10x10 cm",            20, None)]),
     ("Taller de RCP avanzado", "2026-1",
-     "Usar SimMan 3G y Nursing Anne. Verificar AMBU antes de la clase.",
-     [(0, 20, None), (1, 20, None), (4, 20, None),
-      (57, 4, None), (59, 4, None), (62, 2, None),
-      (63, 2, None), (64, 2, None)]),
+     "Usar Fantoma adulto alta fidelidad y Fantoma adulto para entrenamiento "
+     "de enfermeria. Verificar AMBU antes de la clase.",
+     [("Guantes de latex talla S",          20, None),
+      ("Guantes de latex talla M",          20, None),
+      ("Mascarillas quirurgicas",           20, None),
+      ("Contenedor cortopunzante 3L",        4, None),
+      ("Mascarilla de oxigeno adulto",       4, None),
+      ("Canula nasal pediatrica",            2, None),
+      ("Bolsa autoinflable AMBU adulto",     2, None),
+      ("Bolsa autoinflable AMBU pediatrico", 2, None)]),
     ("Taller de cuidados al recien nacido", "2026-1",
-     "Requiere simulador neonatal. Coordinar con Maritza.",
-     [(0, 25, "Talla S/XS"), (4, 25, None), (11, 20, None),
-      (13, 15, None), (33, 5, None), (32, 5, None)]),
+     "Requiere simulador neonatal. Coordinar con docente asignado.",
+     [("Guantes de latex talla S",          25, "Talla S/XS"),
+      ("Mascarillas quirurgicas",           25, None),
+      ("Gasa esteril 10x10 cm",            20, None),
+      ("Aposito adhesivo 10x8 cm",         15, None),
+      ("Oximetro de pulso digital",          5, None),
+      ("Termometro digital axilar",          5, None)]),
     ("Taller de bioseguridad y EPP", "2026-1",
      "EPP completo por alumno. Verificar stock de mascarillas N95.",
-     [(0, 25, None), (1, 25, None), (4, 25, None), (5, 25, None),
-      (6, 25, None), (7, 25, None), (8, 25, None)]),
+     [("Guantes de latex talla S",          25, None),
+      ("Guantes de latex talla M",          25, None),
+      ("Mascarillas quirurgicas",           25, None),
+      ("Mascarillas N95 FFP2",              25, None),
+      ("Gafas de proteccion",              25, None),
+      ("Pecheras desechables",             25, None),
+      ("Gorro quirurgico",                 25, None)]),
     ("Taller de quimica analitica", "2026-1",
      "Insumos de higiene y seguridad para laboratorio quimico.",
-     [(0, 20, None), (1, 20, None), (4, 20, None),
-      (78, 5, "Frasco 1L"), (79, 5, None), (84, 4, None),
-      (85, 4, None), (65, 10, None), (66, 10, None)]),
+     [("Guantes de latex talla S",          20, None),
+      ("Guantes de latex talla M",          20, None),
+      ("Mascarillas quirurgicas",           20, None),
+      ("Clorhexidina gluconato 4% 500ml",    5, "Frasco 1L"),
+      ("Povidona yodada 10% 100ml",          5, None),
+      ("Hipoclorito de sodio 5% 1L",         4, None),
+      ("Gasas con clorhexidina CHG",         4, None),
+      ("Resucitador AMBU con mascarilla",   10, None),
+      ("Bolsa roja residuos peligrosos 60L", 10, None)]),
     ("Taller de toma de muestra", "2026-1",
      "Tecnicas de flebotomia. Cada alumno usa su propio kit de puncion.",
-     [(0, 28, None), (1, 28, None), (4, 28, None),
-      (41, 10, None), (49, 15, None), (51, 8, None),
-      (52, 80, None), (53, 80, None), (55, 10, None)]),
+     [("Guantes de latex talla S",          28, None),
+      ("Guantes de latex talla M",          28, None),
+      ("Mascarillas quirurgicas",           28, None),
+      ("Cateter venoso periferico 20G",     10, None),
+      ("Jeringa 10ml con aguja 21G",        15, None),
+      ("Torniquete venoso",                  8, None),
+      ("Jeringa insulina 1ml",              80, None),
+      ("Aguja hipodermica 21G x 1.5",       80, None),
+      ("Aguja hipodermica 25G x 5/8",       10, None)]),
     ("Taller de bioseguridad de laboratorio", "2026-1",
      "Manejo correcto de residuos biologicos y EPP de laboratorio.",
-     [(0, 25, None), (4, 25, None), (6, 10, None),
-      (65, 5, None), (66, 5, None), (67, 10, None),
-      (68, 6, None), (83, 8, None)]),
+     [("Guantes de latex talla S",          25, None),
+      ("Mascarillas quirurgicas",           25, None),
+      ("Gafas de proteccion",              10, None),
+      ("Resucitador AMBU con mascarilla",    5, None),
+      ("Bolsa roja residuos peligrosos 60L", 5, None),
+      ("Bolsa amarilla residuos especiales", 10, None),
+      ("Caja carton cortopunzantes grande",  6, None),
+      ("Solucion glutaraldehido 2%",         8, None)]),
     ("Taller de primeros auxilios odontologicos", "2026-1",
      "Protocolo de emergencias en clinica dental.",
-     [(0, 20, None), (4, 20, None), (11, 10, None),
-      (30, 5, None), (31, 5, None), (33, 5, None),
-      (70, 3, None), (71, 3, None)]),
-    ("Taller de evaluacion de condicion fisica", "2026-1",
-     "Test de capacidad fisica y mediciones antropometricas.",
-     [(0, 18, None), (4, 18, None),
-      (31, 8, None), (32, 8, None), (33, 8, None),
-      (39, 8, None)]),
+     [("Guantes de latex talla S",          20, None),
+      ("Mascarillas quirurgicas",           20, None),
+      ("Gasa esteril 10x10 cm",            10, None),
+      ("Esfigmomanometro aneroide",          5, None),
+      ("Estetoscopio adulto",                5, None),
+      ("Oximetro de pulso digital",          5, None),
+      ("Adrenalina 1mg/ml ampolla 1ml",      3, None),
+      ("Glucosa 50% ampolla 20ml",           3, None)]),
+    ("Taller de ECG y monitorizacion", "2026-1",
+     "Monitoreo de signos vitales y trazado ECG en paciente critico.",
+     [("Guantes de latex talla S",          18, None),
+      ("Mascarillas quirurgicas",           18, None),
+      ("Estetoscopio adulto",                8, None),
+      ("Termometro digital axilar",          8, None),
+      ("Oximetro de pulso digital",          8, None),
+      ("Cinta metrica flexible",             8, None)]),
 ]
 
 
@@ -665,27 +716,26 @@ def fecha_aleatoria(dias_min, dias_max):
 
 
 def _crear_paquete(db, taller_id, semestre, notas, usuario_id,
-                   items, insumos_db):
-    """Crea un PaqueteInsumo con sus items. Ignora items fuera de rango."""
+                   items, insumos_por_nombre):
+    """Crea un PaqueteInsumo con sus items. Ignora insumos no encontrados."""
     p = PaqueteInsumo(
         taller_id=taller_id, semestre=semestre,
         creado_por_id=usuario_id, notas=notas,
     )
     db.add(p)
     db.flush()
-    for insumo_idx, cantidad, nota in items:
-        if insumo_idx < len(insumos_db):
+    for insumo_nombre, cantidad, nota in items:
+        if insumo_nombre in insumos_por_nombre:
             db.add(PaqueteItem(
                 paquete_id=p.id,
-                insumo_id=insumos_db[insumo_idx].id,
+                insumo_id=insumos_por_nombre[insumo_nombre].id,
                 cantidad_requerida=cantidad,
                 notas=nota,
             ))
         else:
             print(
                 f"  ADVERTENCIA: paquete taller_id={taller_id} — "
-                f"insumo_idx={insumo_idx} fuera de rango "
-                f"(max={len(insumos_db) - 1}), item ignorado"
+                f"insumo '{insumo_nombre}' no encontrado, item ignorado"
             )
     return p
 
@@ -1036,6 +1086,7 @@ def _insertar_talleres(db, asignaturas_por_codigo) -> dict:
 
 def _insertar_paquetes(db, talleres_por_nombre, insumos_db, operadores) -> int:
     print("Insertando paquetes de insumos...")
+    insumos_por_nombre = {i.nombre: i for i in insumos_db}
     total_paquetes = 0
     for taller_nombre, semestre, notas, items in PAQUETES_DATA:
         _crear_paquete(
@@ -1043,7 +1094,7 @@ def _insertar_paquetes(db, talleres_por_nombre, insumos_db, operadores) -> int:
             taller_id=talleres_por_nombre[taller_nombre].id,
             semestre=semestre, notas=notas,
             usuario_id=operadores[0].id,
-            items=items, insumos_db=insumos_db,
+            items=items, insumos_por_nombre=insumos_por_nombre,
         )
         total_paquetes += 1
     db.commit()
