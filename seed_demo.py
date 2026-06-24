@@ -444,61 +444,65 @@ PROGRAMACIONES_DATA = [
      None, "001D", "2026-1", None),
 ]
 
-# Formato: (taller_nombre, estado, hora_inicio_rev, hora_fin_rev, notas, items)
-# taller_nombre referencia PROGRAMACIONES_DATA por nombre unico (clave simbolica).
+# Formato: (taller_nombre, fecha, estado, hora_inicio_rev, hora_fin_rev, notas, items)
+# (taller_nombre, fecha) forma la clave compuesta que referencia PROGRAMACIONES_DATA.
 # items: [(tipo, nombre, cantidad_esperada, cantidad_encontrada, conforme, notas_item)]
 # tipo: 'insumo' | 'implemento' | 'activo_fijo'
 REVISIONES_SALA_DATA = [
-    ("Taller de venopuncion", "completada", "10:35", "10:55", None, [
+    ("Taller de venopuncion", date(2026, 3, 12), "completada", "10:35", "10:55", None, [
         ("insumo",     "Guantes de latex talla M",          30, 28, True,  None),
         ("insumo",     "Cateter venoso periferico 20G",     10,  9, True,  None),
         ("implemento", "Esfigmomanometro aneroide",          2,  2, True,  None),
         ("implemento", "Torniquete venoso",                  5,  5, True,  None),
     ]),
-    ("Taller de sutura basica", "completada", "10:35", "11:00", None, [
+    ("Taller de sutura basica", date(2026, 3, 26), "completada", "10:35", "11:00", None, [
         ("insumo",     "Gasa esteril 10x10 cm",            20, 18, True,  None),
         ("insumo",  "Seda 2-0 con aguja triangular", 15, 13, True, "2 sobres con empaque danado"),
         ("implemento", "Pinza Adson con dientes",        4,  4, True,  None),
         ("implemento", "Porta aguja Hegar",              4,  3, False, "Una unidad no devuelta"),
     ]),
-    ("Taller de RCP avanzado", "completada", "11:05", "11:25", None, [
+    ("Taller de RCP avanzado", date(2026, 4, 9), "completada", "11:05", "11:25", None, [
         ("insumo",      "Mascarillas quirurgicas",        20, 20, True, None),
         ("implemento",  "Bolsa autoinflable AMBU adulto", 3,  3, True, None),
         ("activo_fijo", "SimMan 3G",              None, None, True, "Falla en modulo de sonidos"),
         ("activo_fijo", "Camilla articulada con barandas", None, None, True, None),
     ]),
-    ("Taller de cuidados al recien nacido", "completada", "11:35", "11:55", None, [
+    ("Taller de cuidados al recien nacido", date(2026, 4, 23),
+     "completada", "11:35", "11:55", None, [
         ("insumo",      "Guantes de latex talla S",      25, 24, True, None),
         ("insumo",      "Aposito adhesivo 10x8 cm",      15, 15, True, None),
         ("activo_fijo", "ALS Simulator neonatal",
          None, None, False, "Bateria baja, enviado a mantenimiento"),
     ]),
-    ("Taller de bioseguridad y EPP", "completada", "09:35", "09:50", None, [
+    ("Taller de bioseguridad y EPP", date(2026, 5, 7), "completada", "09:35", "09:50", None, [
         ("insumo",     "Guantes nitrilo sin polvo talla M", 25, 25, True, None),
         ("insumo",     "Mascarillas N95 FFP2",              25, 24, True, None),
         ("implemento", "Gafas de proteccion",        25, 23, True, "2 unidades con vidrio rayado"),
         ("implemento", "Careta de proteccion facial",       10, 10, True,  None),
     ]),
-    ("Taller de quimica analitica", "completada", "12:05", "12:20", None, [
+    ("Taller de quimica analitica", date(2026, 5, 14), "completada", "12:05", "12:20", None, [
         ("insumo",     "Alcohol isopropilico 70% 1000ml",    5,  5, True,  None),
         ("insumo",     "Clorhexidina gluconato 4% 500ml",    5,  4, True,  "Un frasco incompleto"),
         ("implemento", "Gafas de proteccion",               20, 20, True,  None),
     ]),
-    ("Taller de toma de muestra", "completada", "10:05", "10:20", None, [
+    ("Taller de toma de muestra", date(2026, 5, 21), "completada", "10:05", "10:20", None, [
         ("insumo",     "Aguja hipodermica 21G x 1.5",       80, 80, True,  None),
         ("insumo",     "Lancetas descartables x100",         10, 10, True,  None),
         ("implemento", "Torniquete venoso",                   8,  7, True,  "Una unidad en lavado"),
     ]),
-    ("Taller de bioseguridad de laboratorio", "completada", "09:35", "09:50", None, [
+    ("Taller de bioseguridad de laboratorio", date(2026, 5, 28),
+     "completada", "09:35", "09:50", None, [
         ("insumo",     "Bolsa roja residuos peligrosos 60L",  5,  5, True, None),
         ("insumo",     "Contenedor biohazard 30L",             3,  3, True, None),
         ("implemento", "Gafas de proteccion",                 25, 24, True, None),
     ]),
-    ("Taller de primeros auxilios odontologicos", "en_revision", "11:05", None, None, [
+    ("Taller de primeros auxilios odontologicos", date(2026, 6, 4),
+     "en_revision", "11:05", None, None, [
         ("insumo",     "Gasa esteril 10x10 cm",             10, None, None, None),
         ("implemento", "Esfigmomanometro aneroide",           5, None, None, None),
     ]),
-    ("Taller de evaluacion de condicion fisica", "en_revision", "10:05", None, None, [
+    ("Taller de evaluacion de condicion fisica", date(2026, 6, 11),
+     "en_revision", "10:05", None, None, [
         ("insumo",     "Guantes de latex talla M",           18, None, None, None),
         ("implemento", "Cinta metrica flexible",              8,  None, None, None),
     ]),
@@ -979,7 +983,7 @@ def _insertar_paquetes(db, talleres_por_nombre, insumos_db, operadores) -> int:
 
 def _insertar_programaciones(db, talleres_por_nombre, salas_por_nombre) -> dict:
     print("Insertando programaciones de talleres...")
-    programaciones_por_nombre = {}
+    programaciones_por_clave = {}
     for (taller_nombre, sala_nombre, fecha, hora_inicio, hora_fin,
          docente_nombre, seccion, semestre, notas) in PROGRAMACIONES_DATA:
         p = ProgramacionTaller(
@@ -994,21 +998,21 @@ def _insertar_programaciones(db, talleres_por_nombre, salas_por_nombre) -> dict:
             notas=notas,
         )
         db.add(p)
-        programaciones_por_nombre[taller_nombre] = p
+        programaciones_por_clave[f"{taller_nombre}|{fecha}"] = p
     db.flush()
-    print(f"  {len(programaciones_por_nombre)} programaciones (semestre 2026-1)")
-    return programaciones_por_nombre
+    print(f"  {len(programaciones_por_clave)} programaciones (semestre 2026-1)")
+    return programaciones_por_clave
 
 
 def _insertar_revisiones_sala(
-    db, programaciones_por_nombre, salas_por_nombre, operadores
+    db, programaciones_por_clave, salas_por_nombre, operadores
 ) -> int:
     print("Insertando revisiones de sala...")
     total_revisiones = 0
     total_items = 0
-    for (taller_nombre, estado, hora_inicio_rev, hora_fin_rev,
+    for (taller_nombre, fecha, estado, hora_inicio_rev, hora_fin_rev,
          notas, items) in REVISIONES_SALA_DATA:
-        prog = programaciones_por_nombre[taller_nombre]
+        prog = programaciones_por_clave[f"{taller_nombre}|{fecha}"]
         rev = RevisionSala(
             programacion_id=prog.id,
             sala_id=prog.sala_id,
@@ -1132,11 +1136,11 @@ def main():
         total_movs     = _insertar_movimientos(db, insumos_db, usuarios, operadores)
         talleres_por_nombre = _insertar_talleres(db, asignaturas_por_codigo)
         total_paquetes = _insertar_paquetes(db, talleres_por_nombre, insumos_db, operadores)
-        programaciones_por_nombre = _insertar_programaciones(
+        programaciones_por_clave = _insertar_programaciones(
             db, talleres_por_nombre, salas_por_nombre,
         )
         total_revisiones = _insertar_revisiones_sala(
-            db, programaciones_por_nombre, salas_por_nombre, operadores,
+            db, programaciones_por_clave, salas_por_nombre, operadores,
         )
         total_incidencias = _insertar_incidencias(
             db, activos_por_nombre, salas_por_nombre, usuarios,
@@ -1171,7 +1175,7 @@ def main():
         print(f"  Movimientos:       {total_movs} (tipo + subtipo)")
         print(f"  Talleres:          {len(talleres_por_nombre)}")
         print(f"  Paquetes:          {total_paquetes}")
-        print(f"  Programaciones:    {len(programaciones_por_nombre)}")
+        print(f"  Programaciones:    {len(programaciones_por_clave)}")
         print(f"  Revisiones sala:   {total_revisiones}")
         print(f"  Incidencias:       {total_incidencias}")
         print(f"  Ordenes entrada:   {total_ordenes_entrada}")
