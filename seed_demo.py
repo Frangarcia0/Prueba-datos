@@ -8,14 +8,14 @@ Uso:
 Genera:
     - 18 salas clinicas, 10 categorias
     - 5 usuarios (admin, 2 operadores, 2 visores)
-    - 2 docentes demo
-    - 20 asignaturas de 5 carreras
+    - 15 docentes
+    - 29 asignaturas de 4 carreras activas (TENS, TQF, TLCBS, TONS)
     - 88 insumos/implementos en Bodega
     - Unidades fisicas de implementos
     - ~560 movimientos en los ultimos 60 dias
-    - 6 activos fijos: 3 muebles + 3 phantomas
+    - 16 activos fijos: 8 muebles + 8 phantomas
     - 2 proveedores: Laerdal Chile y MedSupply SpA
-    - 1 orden de mantenimiento demo (SimMan 3G en_curso con Laerdal)
+    - 1 orden de mantenimiento demo (pendiente actualizacion Commit 2)
     - 10 talleres + 10 paquetes de insumos
     - 10 programaciones de taller (semestre 2026-1)
     - 10 revisiones de sala (8 completadas, 2 en_revision), 32 items
@@ -94,7 +94,6 @@ TENS  = CarreraAsignatura.TENS
 TQF   = CarreraAsignatura.TQF
 TLCBS = CarreraAsignatura.TLCBS
 TONS  = CarreraAsignatura.TONS
-PF    = CarreraAsignatura.preparador_fisico
 
 SALAS = [
     ("Sala 010", "simulacion", "Sala de simulacion clinica - piso -1"),
@@ -136,44 +135,75 @@ USUARIOS = [
 # Los docentes NO tienen cuenta en Hestia; son entidades externas gestionadas
 # por el operador coordinador.
 DOCENTES_DATA = [
-    ("Paz Rodriguez", "paz.rodriguez@duoc.cl", "12.345.678-9"),
-    ("Michael Torres", "michael.torres@duoc.cl", "98.765.432-1"),
+    ("Olga Tapia",             "olga.tapia@duoc.cl",          "13.456.789-0"),
+    ("Damaris Rojas",          "damaris.rojas@duoc.cl",        "14.567.890-1"),
+    ("Diego Perez",            "diego.perez@duoc.cl",          "15.678.901-2"),
+    ("David Contreras",        "david.contreras@duoc.cl",      "16.789.012-3"),
+    ("Felipe Alegria",         "felipe.alegria@duoc.cl",       "17.890.123-4"),
+    ("Claudia Romero",         "claudia.romero@duoc.cl",       "18.901.234-5"),
+    ("Maria Jose Toro",        "mariajose.toro@duoc.cl",       "19.012.345-6"),
+    ("Daniela Soto",           "daniela.soto@duoc.cl",         "20.123.456-7"),
+    ("Constanza Zuniga",       "constanza.zuniga@duoc.cl",     "21.234.567-8"),
+    ("Lissett Ayala",          "lissett.ayala@duoc.cl",        "22.345.678-9"),
+    ("Carolina Quinio",        "carolina.quinio@duoc.cl",      "23.456.789-0"),
+    ("Alicia Diaz",            "alicia.diaz@duoc.cl",          "24.567.890-1"),
+    ("Javiera Fuentes Torres", "javiera.fuentes@duoc.cl",      "25.678.901-2"),
+    ("Daniela Munoz",          "daniela.munoz@duoc.cl",        "26.789.012-3"),
+    ("Francisco Garay",        "francisco.garay@duoc.cl",      "27.890.123-4"),
 ]
 
 ASIGNATURAS = [
-    ("Primeros Auxilios", "CIS1101", TENS),
-    ("Rol del Tecnico en Enfermeria y Cuidados Basicos", "CIS1102", TENS),
-    ("Anatomofisiologia", "CIS1103", TENS),
-    ("Atencion de Personas con Alteraciones de Salud", "CIS1104", TENS),
-    ("Atencion de la Mujer y Recien Nacido", "CIS1103B", TENS),
-    ("Quimica Analitica e Instrumental", "PFS1115", TQF),
-    ("Bioseguridad Farmaceutica", "BIS1102", TQF),
-    ("Legislacion Farmaceutica", "LFS1112", TQF),
-    ("Farmacologia", "AVS2132", TQF),
-    ("Preparacion de Laboratorio Clinico", "LCS1111", TLCBS),
-    ("Administracion de Toma de Muestra", "ATS1111", TLCBS),
-    ("Bioseguridad Clinica", "BIS1111", TLCBS),
-    ("Microbiologia para Laboratorio Clinico", "LCS3111", TLCBS),
-    ("Anatomo Fisiopatologia Estomatognatica", "ACS1101", TONS),
-    ("Tecnicas de Primeros Auxilios y Procedimientos Basicos", "ACS1102", TONS),
-    ("Servicios de Salud Generales y Odontologicos", "GAS1101", TONS),
-    ("Asistencia en Cirugia Maxilofacial e Implantologia", "ACS1105", TONS),
-    ("Anatomia Funcional del Aparato Locomotor", "FES1101", PF),
-    ("Teoria del Entrenamiento", "EAS1101", PF),
-    ("Evaluacion para la Condicion Fisica", "EAS1102", PF),
+    # TENS (12 asignaturas — siglas reales KB)
+    ("Tecnicas de Primeros Auxilios",                  "AXS1102", TENS),
+    ("Tecnicas Basicas de Enfermeria",                 "EBS1111", TENS),
+    ("Bioseguridad en Enfermeria",                     "EBS1121", TENS),
+    ("Cuidados de Enfermeria en Pediatria",            "CES3111", TENS),
+    ("Cuidados de Enfermeria en Urgencias",            "CES3121", TENS),
+    ("Manejo de Equipos e Insumos",                    "MES3111", TENS),
+    ("Anatomia (malla vigente)",                       "AFS1111", TENS),
+    ("Anatomia (malla nueva 2026)",                    "CIS1103", TENS),
+    ("Administracion de Farmacos",                     "EBS2111", TENS),
+    ("Medico Quirurgico",                              "CES2121", TENS),
+    ("Habilidades para el Trabajo",                    "HES4111", TENS),
+    ("Promocion en Salud",                             "PMS4111", TENS),
+    # TQF (1 asignatura con sigla confirmada en KB)
+    ("Quimica Analitica e Instrumental",               "PFS1115", TQF),
+    # TLCBS (9 asignaturas — siglas reales KB; carrera real: TSLB)
+    ("Preparacion de Laboratorio Clinico",             "LCS1111", TLCBS),
+    ("Administracion de Toma de Muestras",             "ATS1111", TLCBS),
+    ("Bioseguridad de Laboratorio Clinico",            "BIS1111", TLCBS),
+    ("Microbiologia para el Laboratorio Clinico",      "LCS3111", TLCBS),
+    ("Toma de Muestra y Flebotomia",                   "TMS1111", TLCBS),
+    ("Preparacion del Paciente para Toma de Muestra",  "APS1121", TLCBS),
+    ("Tecnicas de Banco de Sangre",                    "BSS3111", TLCBS),
+    ("Banco de Sangre - Organizacion y Fraccionamiento", "BSS2111", TLCBS),
+    ("Tecnicas de Laboratorio Clinico",                "LCS2111", TLCBS),
+    # TONS (7 asignaturas con sigla confirmada en KB)
+    ("Tecnicas de Diagnostico en Odontologia",         "EOD3141", TONS),
+    ("Odontologia Restauradora",                       "EOS3111", TONS),
+    ("Asistencia en Endodoncia",                       "EOS3131", TONS),
+    ("Bioseguridad y Ergonomia Clinica",               "BOS2121", TONS),
+    ("Asistencia en Rehabilitacion Oral",              "EOS4111", TONS),
+    ("Asistencia en Periodoncia",                      "EOS4121", TONS),
+    ("Asistencia en Ortodoncia y Ortopedia",           "EOS4141", TONS),
 ]
 
 # Formato: (docente_nombre, asig_codigo, seccion, semestre, num_estudiantes)
 # docente_nombre referencia DOCENTES_DATA; asig_codigo referencia ASIGNATURAS.
 CLASES_DOCENTE = [
-    ("Paz Rodriguez",  "CIS1101", "001D", "2026-1", 28),
-    ("Paz Rodriguez",  "CIS1102", "001D", "2026-1", 32),
-    ("Michael Torres", "CIS1103", "001D", "2026-1", 30),
-    ("Michael Torres", "CIS1104", "002D", "2026-1", 35),
-    ("Paz Rodriguez",  "PFS1115", "001D", "2026-1", 22),
-    ("Michael Torres", "LCS1111", "001D", "2026-1", 25),
-    ("Paz Rodriguez",  "ACS1101", "001D", "2026-1", 20),
-    ("Michael Torres", "FES1101", "001D", "2026-1", 18),
+    # 1° semestre 2026-1
+    ("Maria Jose Toro",        "AXS1102", "005D", "2026-1", 28),
+    ("Daniela Soto",           "AXS1102", "015D", "2026-1", 25),
+    ("David Contreras",        "CIS1103", "014V", "2026-1", 22),
+    ("Constanza Zuniga",       "CES3111", "001V", "2026-1", 30),
+    ("Carolina Quinio",        "BIS1111", "003D", "2026-1", 20),
+    ("Alicia Diaz",            "ATS1111", "002D", "2026-1", 22),
+    ("Javiera Fuentes Torres", "EOD3141", "002D", "2026-1", 18),
+    # 2° semestre 2025-2
+    ("Olga Tapia",             "CES2121", "002D", "2025-2", 30),
+    ("Damaris Rojas",          "CES2121", "003D", "2025-2", 28),
+    ("Felipe Alegria",         "CES2121", "009D", "2025-2", 25),
+    ("Daniela Munoz",          "BOS2121", "002D", "2025-2", 22),
 ]
 
 # Formato: (nombre, unidad_medida, stock, minimo, cat_idx, tipo, costo)
@@ -279,30 +309,70 @@ INSUMOS = [
 
 # Formato: (nombre, descripcion, tipo, sala_nombre, fidelidad, notas, proveedor_key)
 # sala_nombre referencia SALAS por nombre unico.
+# Activos derivados de solicitudes de insumos KB (columna "Equipos"); sin proveedor
+# confirmado en documentos.
 ACTIVOS_FIJOS_DEMO = [
-    ("Camilla articulada con barandas",
-     "Camilla electrica 3 secciones, barandas abatibles",
-     TipoActivo.mueble, "Sala 010", None,
-     "Revision anual programada marzo 2027", "medsupply"),
-    ("Carro de paro de emergencia",
-     "Carro equipado con desfibrilador y medicamentos de emergencia",
-     TipoActivo.mueble, "Sala 013", None,
-     "Revision mensual de contenido obligatoria", "medsupply"),
-    ("Mesa de procedimientos Mayo",
-     "Mesa auxiliar acero inoxidable con ruedas",
-     TipoActivo.mueble, "Sala 012", None, None, None),
-    ("SimMan 3G",
-     "Maniqui de alta fidelidad adulto Laerdal",
+    # Phantomas alta fidelidad (CES2121, CES3111 — alta fidelidad INACSL 2016)
+    ("Fantoma adulto alta fidelidad",
+     "Maniqui adulto alta fidelidad para simulacion clinica avanzada",
      TipoActivo.phantoma, "Sala 010", FidelidadPhantoma.alta,
-     "Mantenimiento preventivo semestral por Laerdal Chile", "laerdal"),
-    ("Nursing Anne",
-     "Maniqui para entrenamiento de enfermeria Laerdal",
-     TipoActivo.phantoma, "Sala 011", FidelidadPhantoma.media,
-     None, "laerdal"),
-    ("ALS Simulator neonatal",
-     "Maniqui neonatal de soporte vital avanzado",
-     TipoActivo.phantoma, "Sala 016", FidelidadPhantoma.alta,
-     "Solo para clase de Obstetricia y Ginecologia", "laerdal"),
+     "Mantenimiento preventivo semestral requerido", None),
+    ("Fantoma recien nacido soporte vital avanzado",
+     "Maniqui neonatal para soporte vital avanzado en pediatria",
+     TipoActivo.phantoma, "Sala 010", FidelidadPhantoma.alta,
+     None, None),
+    # Phantomas baja fidelidad — entrenamiento de habilidades tecnicas
+    ("Fantoma adulto para entrenamiento de enfermeria",
+     "Maniqui adulto basico para tecnicas de enfermeria y venopuncion",
+     TipoActivo.phantoma, "Sala 011", FidelidadPhantoma.baja,
+     None, None),
+    ("Fantoma RCP adulto",
+     "Maniqui adulto para entrenamiento de RCP y uso de DEA",
+     TipoActivo.phantoma, "Sala 012", FidelidadPhantoma.baja,
+     None, None),
+    ("Fantoma RCP pediatrico",
+     "Maniqui pediatrico para entrenamiento de RCP",
+     TipoActivo.phantoma, "Sala 012", FidelidadPhantoma.baja,
+     None, None),
+    ("Fantoma politrauma",
+     "Maniqui politraumatizado para triage y atencion de urgencias",
+     TipoActivo.phantoma, "Sala 011", FidelidadPhantoma.baja,
+     None, None),
+    ("Brazo de puncion adulto",
+     "Brazo sintetico para practica de venopuncion y flebotomia",
+     TipoActivo.phantoma, "Sala 011", FidelidadPhantoma.baja,
+     None, None),
+    ("Fantoma recien nacido basico",
+     "Maniqui neonatal para control del nino sano y antropometria",
+     TipoActivo.phantoma, "Sala 013", FidelidadPhantoma.baja,
+     None, None),
+    # Mobiliario clinico (mueble)
+    ("Mesa Mayo",
+     "Mesa auxiliar acero inoxidable con ruedas para procedimientos",
+     TipoActivo.mueble, "Sala 010", None, None, None),
+    ("Cama clinica articulada",
+     "Cama clinica articulada para simulacion de paciente hospitalizado",
+     TipoActivo.mueble, "Sala 010", None, None, None),
+    ("Maletin de emergencia clinica",
+     "Maletin equipado con insumos para urgencias simuladas",
+     TipoActivo.mueble, "Sala 010", None,
+     "Revision mensual de contenido obligatoria", None),
+    # Equipos clinicos (tipo mueble — TipoActivo.equipo_medico no confirmado en modelo)
+    ("Electrocardiografo",
+     "Electrocardiografo para taller de ECG y monitorizacion",
+     TipoActivo.mueble, "Sala 010", None, None, None),
+    ("Monitor multiparametro",
+     "Monitor de signos vitales para simulacion clinica",
+     TipoActivo.mueble, "Sala 010", None, None, None),
+    ("Desfibrilador",
+     "Desfibrilador bifasico para urgencias y manejo de equipos",
+     TipoActivo.mueble, "Sala 012", None, None, None),
+    ("DEA Desfibrilador Externo Automatico",
+     "DEA para entrenamiento de RCP y primeros auxilios",
+     TipoActivo.mueble, "Sala 012", None, None, None),
+    ("Centrifuga de laboratorio",
+     "Centrifuga para fraccionamiento de muestras en laboratorio clinico",
+     TipoActivo.mueble, "Sala 016", None, None, None),
 ]
 
 MOTIVOS_SALIDA = [
@@ -330,25 +400,25 @@ MOTIVOS_ENTRADA = [
 # asig_codigo referencia ASIGNATURAS por codigo unico.
 TALLERES_DATA = [
     ("Taller de venopuncion",
-     "Practica de cateterizacion venosa periferica", "CIS1101"),
+     "Practica de cateterizacion venosa periferica y toma de muestras", "EBS1111"),
     ("Taller de sutura basica",
-     "Tecnicas de sutura y cierre de heridas en simulador", "CIS1101"),
+     "Tecnicas de sutura y curacion de heridas en simulador", "MES3111"),
     ("Taller de RCP avanzado",
-     "Reanimacion cardiopulmonar con maniqui de alta fidelidad", "CIS1103"),
+     "Reanimacion cardiopulmonar con maniqui de alta fidelidad", "CES3121"),
     ("Taller de cuidados al recien nacido",
-     "Atencion y cuidados del recien nacido en simulador neonatal", "CIS1103B"),
+     "Atencion y cuidados del recien nacido en simulador neonatal", "CES3111"),
     ("Taller de bioseguridad y EPP",
-     "Uso correcto de equipos de proteccion personal", "BIS1102"),
+     "Uso correcto de equipos de proteccion personal en enfermeria", "EBS1121"),
     ("Taller de quimica analitica",
      "Preparacion de reactivos y tecnicas de laboratorio farmaceutico", "PFS1115"),
     ("Taller de toma de muestra",
-     "Tecnicas de extraccion de muestra y flebotomia", "ATS1111"),
+     "Tecnicas de extraccion de muestra y flebotomia en laboratorio", "TMS1111"),
     ("Taller de bioseguridad de laboratorio",
      "Uso correcto de EPP y manejo de residuos en laboratorio clinico", "BIS1111"),
     ("Taller de primeros auxilios odontologicos",
-     "Manejo de emergencias y primeros auxilios en clinica dental", "ACS1102"),
-    ("Taller de evaluacion de condicion fisica",
-     "Medicion de parametros antropometricos y test de capacidad fisica", "EAS1102"),
+     "Manejo de emergencias y bioseguridad en clinica dental", "BOS2121"),
+    ("Taller de ECG y monitorizacion",
+     "Electrocardiograma y monitoreo de signos vitales en paciente critico", "CES2121"),
 ]
 
 # Formato: (taller_nombre, semestre, notas, items)
